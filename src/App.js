@@ -16,7 +16,7 @@ import MypageMain from './routes/Mypage/MypageMain';
 import Shop1 from './routes/Shop/Shop1';
 import Shop2 from './routes/Shop/Shop2';
 import Shop3 from './routes/Shop/Shop3';
-
+import './App.css';
 function App() {
   const [login,setLogin] = useState(false);
   const [admin,setAdmin] = useState(false);

@@ -1,5 +1,4 @@
 import MypageBar from "./MypageBar";
-import '../../css/Info.css';
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PhoneNumber from "./PhoneNumber";

@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/Register.css';
 
 const Register = () =>{
   const [PW,setPW] = useState("");

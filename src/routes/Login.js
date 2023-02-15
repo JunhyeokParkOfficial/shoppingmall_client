@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../css/Login.css'
 import {setCookie} from 'react-cookie';
 const Login = ({setLogin:setLogin,setAdmin:setAdmin,setEmail:setEmail}) =>{
     const [ID,setID] = useState("");

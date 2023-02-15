@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import '../../css/Products.css';
 import AdminProduct from "./AdminProduct";
 import Product from "./AdminProduct";
 const AdminProducts = () => {
