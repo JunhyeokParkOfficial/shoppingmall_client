@@ -1,0 +1,34 @@
+.Product{
+    width: 84%;
+    float: right;
+}
+
+.product_table{
+    margin: 0;
+    border: 1px solid black;
+}
+
+.product_table_container{
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+}
+.product_table_container table{
+    border: 1px solid #d7d5d5;
+    width: 100%;
+    border-left: 0px;
+    border-right: 0px;
+    border-collapse: collapse;
+}
+
+.product_table td{
+    width: 20%;
+}
+.product_table tr{
+    height: 40px;
+}
+
+.Product a{
+    text-decoration: none;
+    color: black;
+}

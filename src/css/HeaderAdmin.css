@@ -1,0 +1,26 @@
+.logoutMenu{
+    float: right;
+    margin-right: 80px;
+}
+
+.left_menu{
+    background-color: #646262;
+    float: left;
+    width: 15%;
+    height: 100vh;
+    border-right: 1px solid black;
+}
+.left_menu ul{
+    margin: 0;
+    text-align: center;
+}
+.left_menu li div{
+    padding-top:25px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid black;
+}
+.left_menu a{
+    text-decoration: none;
+    color: white;
+}
+
