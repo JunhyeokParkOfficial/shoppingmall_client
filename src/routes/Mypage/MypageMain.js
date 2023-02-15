@@ -1,9 +1,13 @@
+import MypageBar from "./MypageBar";
 
 const MypageMain = () => {
     return (
-       <div>
-            <h1>Mypage Main</h1>
-       </div>
+        <>
+            <MypageBar/>
+            <div className="mypage_content">
+                <h3>Main</h3>
+            </div>
+        </>
     )
 }
 export default MypageMain;

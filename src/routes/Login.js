@@ -24,7 +24,14 @@ const Login = ({setLogin:setLogin,setAdmin:setAdmin,setEmail:setEmail}) =>{
             setAdmin(true);
             navigate("/admin/dashboard");
         }
-        axios.post(uri, data).then(response => response.data).then((res)=>{
+        else {
+            localStorage.setItem('username',ID);
+            setLogin(true);
+            setEmail(ID);
+            console.log("login!!!");
+            navigate("/");
+        }
+        /*axios.post(uri, data).then(response => response.data).then((res)=>{
             if(res.msg==="인증이 실패하였습니다."){
                 alert("아이디와 비밀번호를 확인하세요");
             }
@@ -38,7 +45,7 @@ const Login = ({setLogin:setLogin,setAdmin:setAdmin,setEmail:setEmail}) =>{
                 navigate("/");
             }
         }
-        )
+        )*/
         
     }
     return (
