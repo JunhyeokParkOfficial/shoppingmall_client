@@ -1,5 +1,3 @@
-import '../../css/MypageBar.css';
-
 const MypageBar = () => {
     return (
         <div className="mypage_container">
