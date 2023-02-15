@@ -1,0 +1,79 @@
+#container{
+    position: relative;
+    margin-top: 70px;
+    overflow: auto;
+}
+
+#content{
+    position: relative;
+    margin: 0 auto;
+    width: 95%;
+    max-width: 1200px;
+    min-height: 700px;
+}
+
+#login-title{
+    text-align: center;
+    font-size: 17px;
+    border-bottom: 1px solid #000;
+    padding-bottom: 20px;
+    margin: 0px;
+}
+
+#login{
+    position: relative;
+    width: 420px;
+    margin: 0 auto;
+}
+
+fieldset{
+    border: none;
+    vertical-align: top;
+    margin: 0px; padding: 0px;
+}
+
+.form{
+    margin: 40px 0 40px 0;
+    padding: 0;
+}
+
+.form li{
+    margin: 8px 0;
+}
+
+#member-id,#member-pw{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 42px;
+    line-height: 40px;
+    border: 1px solid #ccc;
+    text-indent: 10px;
+    font-size: 14px;
+}
+
+.btn_login li a{
+    display: block;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    line-height: 50px;
+    font-size: 14px;
+}
+
+ul{
+    padding: 0;
+}
+.btn_register{
+    text-align : center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.btn_register a{
+    text-decoration: none;
+    color: black;
+    line-height: 30px;
+    font-size: 14px;
+}

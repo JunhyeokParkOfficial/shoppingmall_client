@@ -1,0 +1,38 @@
+pre{
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 24px;
+    white-space: pre-wrap;
+    margin:0;
+}
+
+#Main_wrap .right {
+    float: right;
+    width: 30%;
+    margin-right: 2.5%;
+    margin-top: 60px;
+}
+
+#Main_wrap {
+    display: inline-block;
+    border-bottom: 1px solid #000;
+    position: relative;
+    width: 100%;
+}
+
+#Main_wrap .left {
+    float: left;
+    width: 65%;
+    max-width: 1200px;
+    border-right: 1px solid #000;
+    font-size: 0;
+    line-height: 0;
+    padding: 0;
+    margin: 0px;
+}
+
+#Main_wrap .left img {
+    width: 100%;
+    height: 100%;
+    
+}

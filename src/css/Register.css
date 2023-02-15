@@ -1,0 +1,98 @@
+#container{
+    position: relative;
+    margin-top: 70px;
+}
+
+#reg_contents {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    max-width: 1200px;
+    min-height: 700px;
+}
+
+.titleArea {
+    min-height: 30px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.titleArea h2 {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+#joinForm{
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#joinForm table{
+    border: 1px solid #d7d5d5;
+    width: 100%;
+    border-left: 0px;
+    border-right: 0px;
+    border-collapse: collapse;
+}
+.text_guide{
+    color: #999;
+    font-size: 12px;
+}
+
+#joinForm table .ID_input,
+#joinForm table .PW_input,
+#joinForm table .name_input,
+#joinForm table .Email_input,
+#joinForm table .address_input
+{
+    border: 1px solid #ddd;
+    color: #888;
+    width: 98%;
+    line-height: 28px;
+    height: 30px;
+    margin-right: 5px;
+}
+
+#joinForm table .PW_input{
+    letter-spacing: 5px;
+}
+
+#joinForm table .phone_input{
+    border: 1px solid #ddd;
+    color: #888;
+    width: 10%;
+    line-height: 28px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+#joinForm .reg_btn{
+    margin-top: 10px;
+    text-align: center;
+}
+.reg_btn .btn_text{
+    display: block;
+    line-height: 40px;
+    width: 100%;
+    border: 1px solid #000;
+    color: #000;
+}
+.reg_btn .btn_text:hover{
+    transition: background 0.5s ease-out;
+    color: white;
+    background-color: #000;
+}
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+
+.hidden{
+    display: none !important;
+}
+.text_guide span{
+    display: block;
+    color: #1c4ae0;
+}
