@@ -1,10 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { remove_userInfo } from '../../data/authReducer';
 
-const Header = ({login:login,setLogin:setLogin}) => {
-    const navigate = useNavigate();
+const Header = () => {
+    const dispatch = useDispatch();
+
+    const user = useSelector(state=>state.user);
+
+    //로그아웃 클릭
     const logoutClick = () =>{
-        localStorage.clear();console.log("logout!!");
-        navigate(`/`);
+        dispatch(remove_userInfo());
     }
     return (
        <div id="Header">
@@ -47,7 +52,7 @@ const Header = ({login:login,setLogin:setLogin}) => {
                                 <ul className="sub sub2">
                                     <div className="inner">
                                         <ul>
-                                            {login?(
+                                            {user.isLoggedIn?(
                                                 <div>
                                                     <p >
                                                         <a onClick={logoutClick} href="/">LOGOUT</a>
@@ -72,7 +77,7 @@ const Header = ({login:login,setLogin:setLogin}) => {
                                 </ul>
                             </li>
                             <li>
-                                {login?<a href='/cart'>CART</a>:<a href='/login'>CART</a>}
+                                {user.isLoggedIn?<a href='/cart'>CART</a>:<a href='/login'>CART</a>}
                             </li>
                         </ul>
                     </div>

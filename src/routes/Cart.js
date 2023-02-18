@@ -1,8 +1,5 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
-const Cart = ({login:login}) =>{
-    console.log("cart",login);
+const Cart = () =>{
     return (
         <div>
             <h1>Cart</h1>

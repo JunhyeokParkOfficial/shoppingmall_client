@@ -1,18 +1,21 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Axios } from "../../CustomAxios";
 import AdminProduct from "./AdminProduct";
-import Product from "./AdminProduct";
+
 const AdminProducts = () => {
    const [data,setData] = useState([]);
-    const uri = "http://localhost:3001/product";
+
+   //상품 데이터 GET
+    const uri = "/product";
     const getProduct =() =>{
-      axios.get(uri)
+      Axios.get(uri)
       .then((response)=>{
       setData(response.data);
       console.log(response.data);
       })
     }
+    
     useEffect(()=>{
         getProduct();
     },[]);
@@ -34,7 +37,7 @@ const AdminProducts = () => {
                   <tr>  
                     <td></td>
                     <td className="">상품명</td>
-                    <td className="">단가</td>
+                    <td className="">가격</td>
                     <td className="">재고</td>
                     <td className="">상품 상태</td>
                     <td></td>

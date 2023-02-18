@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Axios } from '../CustomAxios';
 
 const Register = () =>{
   const [PW,setPW] = useState("");
@@ -11,7 +11,10 @@ const Register = () =>{
   const [PN3,setPN3] = useState("");
   const [Email,setEmail] = useState("");
   const [address,setAddress] = useState("");
+
   const navigate = useNavigate();
+  
+  //이메일 형식 확인 후 경고문 표시
   const onEmailBlur = (event) => {
     const RegExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     if(RegExp.test(event.target.value)){
@@ -23,25 +26,22 @@ const Register = () =>{
         setEmail("");
     }
   }
-  const onEmailHandler = (event) => {
-    setEmail(event.target.value);
-  }
+
+  // 이메일 형식 체크
   const EmailCheck = () => {
     const RegExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     if(RegExp.test(Email)) return true;
     else return false;
   }
-
-  const onPWHandler = (event) => {
-    setPW(event.target.value);
-  }
-
+  
+  //비밀번호 형식 체크
   const PWCheck = () => {
     let RegExp =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{10,}$/;
     if(RegExp.test(PW))return true;
     else return false;
   }
 
+  //비밀번호 일치 여부 확인 후 경고문 표시
   const onPW2Blur = (event) => {
     setPW2(event.target.value);
     if(event.target.value!==PW){
@@ -52,21 +52,14 @@ const Register = () =>{
     }
   }
   
-  const onNameHandler = (event) =>{
-    setName(event.target.value);
-  }
+  //이름 형식 체크
   const nameCheck = () => {
     const RegExp = /^[가-희]{1,100}$/;
     if(RegExp.test(name))return true;
     else return false;
   }
 
-  const onPNHandler = (event) =>{
-      setPN1(document.querySelector(".first_num").value);
-      setPN2(document.querySelector(".second_num").value);
-      setPN3(document.querySelector(".third_num").value);
-  }
-
+  //전화번호 형식 체크
   const PNCheck = () =>{
     if(PN1===""&&PN2===""&&PN3===""){
       return true;
@@ -79,9 +72,8 @@ const Register = () =>{
     }
     else return false
   }
-  const onAddressHandler = (event) => {
-    setAddress(event.target.value);
-  }
+
+  //주소
   const addressCheck = () =>{
     if(address==="")return true;
     const RegExp = /^[가-희]{1,}$/;
@@ -89,20 +81,29 @@ const Register = () =>{
     else return false;
   }
 
+  //입력된 정보  POST
   const requestReg = (data) =>{
-    const uri = "http://localhost:3001/member_new";
-    axios.post(uri, data).then(response => response.data).then((res) => {
+    const uri = "/member_new";
+    Axios.post(uri, data).then(response => response.data)
+    .then((res) => {
       console.log(res);
-      if(res.status=== 500) {
+      alert("가입되었습니다");
+      navigate("/");
+    })
+    .catch((err)=>{
+      if(err.status === 500) {
         alert("이미 가입된 이메일입니다");
       }
-      else if(res.data.code === 400) {
+      else if(err.status === 400) {
         alert("회원정보를 입력하세요");
+      }
+      else {
+        alert("회원가입에 실패했습니다");
       }
     });
   }
+  //회원가입 클릭
   const onRegClick = () => {
-    console.log("Clicked!!!");
     if(!EmailCheck())alert("이메일을 확인해주십시오");
     if(!PWCheck())alert("비밀번호를 확인해주십시오");
     if(PW!==PW2)alert("비밀번호가 일치하지 않습니다");
@@ -110,28 +111,11 @@ const Register = () =>{
     if(!PNCheck())alert("휴대전화번호를 확인해주십시오");
     //if(!addressCheck())alert("주소를 확인해주십시오");
     if(EmailCheck()&&PWCheck()&&(PW===PW2)&&nameCheck()&&PNCheck){
-      let data;
-      if(PN1===""&&PN2===""&&PN3===""&&address===""){
-        data = {email:Email,name:name,password:PW};
-        console.log("good!! but PN & address are gone;;");
-      }
-      else if(PN1===""&&PN2===""&&PN3===""){
-        data = {address:address,email:Email,name:name,password:PW};
-        console.log("good!! but PN is gone;;");
-      }
-      else if(address===""){
-        data = {email:Email,name:name,password:PW,phone_number:`${PN1}-${PN2}-${PN3}`};
-        console.log("good!! but address is gone;;");
-      }
-      else {
-        data = {address:address,email:Email,name:name,password:PW,phone_number:`${PN1}-${PN2}-${PN3}`};
-        console.log("good!!");
-      }
+      const data = {address:address,email:Email,name:name,password:PW,phone_number:`${PN1}-${PN2}-${PN3}`};
       requestReg(data);
-      alert("가입되었습니다");
-      navigate("/");
     }
   }
+
     return (
         <div id="container">
             <div id="reg_contents">
@@ -147,7 +131,7 @@ const Register = () =>{
                                 <tr>
                                   <th className="tg-0lax">* 이메일</th>
                                   <td className="tg-0lax">
-                                    <input className="ID_input"onChange={onEmailHandler} onBlur={onEmailBlur} type="text"/>
+                                    <input className="ID_input"onChange={(e)=>setEmail(e.target.value)} onBlur={onEmailBlur} type="text"/>
                                     <p className='text_guide'>
                                     <span className='hidden id_guide'>이메일을 정확하게 입력해 주세요.</span>
                                     </p>
@@ -156,7 +140,7 @@ const Register = () =>{
                                 <tr>
                                   <th className="tg-0lax">* 비밀번호</th>
                                   <td className="tg-0lax">
-                                    <input className="PW_input"onChange={onPWHandler} type="password"/>
+                                    <input className="PW_input"onChange={(e) =>setPW(e.target.value)} type="password"/>
                                     <p className='text_guide'>
                                       특수문자 포함 10자리 이상
                                     </p>
@@ -173,19 +157,19 @@ const Register = () =>{
                                 </tr>
                                 <tr>
                                   <th className="tg-0lax">* 이름</th>
-                                  <td className="tg-0lax"><input  onChange={onNameHandler} className='name_input'type="text"/></td>
+                                  <td className="tg-0lax"><input  onChange={(e)=>setName(e.target.value)} className='name_input'type="text"/></td>
                                 </tr>
                                 <tr>
                                   <th className="tg-0lax">휴대전화</th>
                                   <td className="tg-0lax">
-                                    <input className="phone_input first_num" maxLength="3" onChange={onPNHandler} type="text"/>-
-                                    <input style={{marginLeft:"10px"}} className="phone_input second_num" maxLength="4" onChange={onPNHandler} type="text"/>-
-                                    <input style={{marginLeft:"10px"}} className="phone_input third_num" maxLength="4"onChange={onPNHandler} type="text"/>
+                                    <input className="phone_input first_num" maxLength="3" onChange={(e) =>setPN1(e.target.value)} type="text"/>-
+                                    <input style={{marginLeft:"10px"}} className="phone_input second_num" maxLength="4" onChange={(e) =>setPN2(e.target.value)} type="text"/>-
+                                    <input style={{marginLeft:"10px"}} className="phone_input third_num" maxLength="4"onChange={(e) =>setPN3(e.target.value)} type="text"/>
                                   </td>
                                 </tr>
                                 <tr>
                                   <th className="tg-0lax">주소</th>
-                                  <td className="tg-0lax"><input className="address_input" onChange={onAddressHandler} type="text"/></td>
+                                  <td className="tg-0lax"><input className="address_input" onChange={(e)=>setAddress(e.target.value)} type="text"/></td>
                                 </tr>
                                 
                           </tbody>

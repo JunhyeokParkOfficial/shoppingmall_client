@@ -1,9 +1,11 @@
-import axios from "axios";
+import { Axios } from "../../CustomAxios";
 
-const AdminProduct = ({product:product,getProduct:getProduct}) =>{
-    const uri = `http://localhost:3001/product/${product.id}`
+const AdminProduct = ({product,getProduct}) =>{
+    const uri = `/product/${product.id}`
+    
+    //삭제버튼 클릭
     const deleteClick = async(event)=>{
-      await axios.delete(uri);
+      await Axios.delete(uri);
       getProduct();
     }
     

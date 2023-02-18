@@ -1,11 +1,11 @@
 import MypageBar from "./MypageBar";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import PhoneNumber from "./PhoneNumber";
 import { useNavigate } from "react-router-dom";
+import { Axios } from "../../CustomAxios";
+import { useSelector } from "react-redux";
 
 const Info = () => {
-    const uri = "http://localhost:3001/member_new";
     const [data,setData] = useState([]);
     const [loading,setLoading] = useState(false);
     const [newPW1,setNewPW1] = useState("");
@@ -13,44 +13,40 @@ const Info = () => {
     const [a,setA] = useState("");
     const [b,setB] = useState("");
     const [c,setC] = useState("");
+    
     const navigate = useNavigate();
+    const user = useSelector(state=>state.user);
+
+    //개인정보 GET
+    const uri = "/member_new";
     const getInfo =async() =>{
-        const savedUsername = localStorage.getItem("username");
-        await axios.get(uri)
-        .then((response)=>{
-            console.log("axios:",response.data);
-            return(
-                response.data
-                )
-            }).then((datas)=>datas.filter((data)=>data.email===savedUsername)).then((data)=>{
-               if(data[0].phone_number){
+        const userId = user.info.userId;
+        await Axios.get(`${uri}/${userId}`)
+        .then((res)=>res.data)
+        .then((data)=>{
+            if(data.phone_number){
                 if(data[0].phone_number.length===13){
-                    setA(data[0].phone_number.substr(0,3));
-                    setB(data[0].phone_number.substr(4,4));
-                    setC(data[0].phone_number.substr(9,4));
+                    setA(data.phone_number.substr(0,3));
+                    setB(data.phone_number.substr(4,4));
+                    setC(data.phone_number.substr(9,4));
                 }
-                else if(data[0].phone_number.length===12){
-                    setA(data[0].phone_number.substr(0,3));
-                    setB(data[0].phone_number.substr(4,3));
-                    setC(data[0].phone_number.substr(8,4));
+                else if(data.phone_number.length===12){
+                    setA(data.phone_number.substr(0,3));
+                    setB(data.phone_number.substr(4,3));
+                    setC(data.phone_number.substr(8,4));
                 }
-               }
-                setData(data[0])})
-        setLoading(true);
+            }
+            setData(data);
+            setLoading(true);
+        })
     }
 
     useEffect(()=>{
         getInfo(); 
     },[])
 
-   
-    const onPWHandler1 = (event) => {
-        setNewPW1(event.target.value);
-    }
-    const onPWHandler2 = (event) => {
-        setNewPW2(event.target.value);
-    }
-    
+
+    //전화번호 형식 체크
     const PNCheck = () =>{
         if(a.length===0&&b.length===0&&c.length===0){
             return true;
@@ -63,12 +59,15 @@ const Info = () => {
         }
         else return false
     }
+
+    //비밀번호 형식 체크
     const PWCheck = () => {
         let RegExp =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{10,}$/;
         if(RegExp.test(newPW1))return true;
         else return false;
       }
-
+    
+    //저장버튼 클릭
     const saveClick = () => {
         if(!PNCheck())alert("휴대전화 번호를 정확하게 입력하세요");
         else if(!PWCheck()||(newPW1!==newPW2))alert("비밀번호를 정확하게 입력하세요");
@@ -91,8 +90,7 @@ const Info = () => {
                     "phone_number":`${a}-${b}-${c}`,
                 }
             }
-            axios.put(`${uri}/${data.id}`,putData);
-            console.log("good!");
+            Axios.put(`${uri}/${data.id}`,putData);
             navigate("/");
         }
     }
@@ -120,11 +118,11 @@ const Info = () => {
                             </tr>
                             <tr>
                                     <th>새 비밀번호</th>
-                                    <td><input onChange={onPWHandler1}value={newPW1} type="password" placeholder="특수문자 포함 10자리 이상"/></td>
+                                    <td><input onChange={(e)=>setNewPW1(e.target.value)}value={newPW1} type="password" placeholder="특수문자 포함 10자리 이상"/></td>
                             </tr>
                             <tr>
                                     <th>새 비밀번호 확인</th>
-                                    <td><input onChange={onPWHandler2} value={newPW2} type="password" placeholder="비밀번호 확인"/></td>
+                                    <td><input onChange={(e)=>setNewPW2(e.target.value)} value={newPW2} type="password" placeholder="비밀번호 확인"/></td>
                             </tr>
                         </tbody>
                     </table>
