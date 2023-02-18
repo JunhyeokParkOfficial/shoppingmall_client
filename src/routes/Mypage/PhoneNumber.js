@@ -8,26 +8,14 @@ const PhoneNumber = ({data,a,b,c,setA,setB,setC}) =>{
         height: "30px",
         marginRight: "5px"
     }
-    useEffect(()=>{
-        
-    },[])
 
-    const onAHandler = (event) => {
-        setA(event.target.value);
-    }
-    const onBHandler = (event) => {
-        setB(event.target.value);
-    }
-    const onCHandler = (event) => {
-        setC(event.target.value);
-    }
         return (
                 <div>
-                    <input onChange={onAHandler} style={styleObj1} type="text" value={a}/>
+                    <input onChange={(e)=>setA(e.target.value)} style={styleObj1} type="text" value={a}/>
                     <> - </>
-                    <input onChange={onBHandler} style={styleObj1} type="text" value={b}/>
+                    <input onChange={(e)=>setB(e.target.value)} style={styleObj1} type="text" value={b}/>
                     <> - </> 
-                    <input onChange={onCHandler} style={styleObj1} type="text" value={c}/>
+                    <input onChange={(e)=>setC(e.target.value)} style={styleObj1} type="text" value={c}/>
                 </div>
                 )
 }

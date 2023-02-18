@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
 
-const HeaderAdmin = ({login:login,setLogin:setLogin}) => {
+const HeaderAdmin = () => {
     const navigate = useNavigate();
     const logoutClick = () =>{
-        localStorage.clear();console.log("logout!!");
+        localStorage.clear();
+        console.log("logout!!");
         navigate(`/`);
     }
     return (

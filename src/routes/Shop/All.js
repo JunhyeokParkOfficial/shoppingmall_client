@@ -1,12 +1,14 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Axios } from '../../CustomAxios';
 
 const All = () =>{
     const [data,setData] = useState([]);
-    const uri = "http://localhost:3001/product";
+    const uri = "/product";
+
+    //상품데이터 GET
     const getProduct =() =>{
-      axios.get(uri)
+      Axios.get(uri)
       .then((response)=>{
         return response.data.filter((product)=>product.item_status==="판매 중")}).then((data)=>setData(data));
     }
