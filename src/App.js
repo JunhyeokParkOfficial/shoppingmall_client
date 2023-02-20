@@ -17,6 +17,7 @@ import Shop2 from './routes/Shop/Shop2';
 import Shop3 from './routes/Shop/Shop3';
 import './App.css';
 import { useSelector } from 'react-redux';
+import Detail from './routes/Shop/Detail';
 
 function App() {
   // 유저 상태 가져옴
@@ -44,6 +45,7 @@ function App() {
           <Route path="/mypage" element={<MypageMain/>}></Route>
           <Route path="/mypage/information" element={<Info />}></Route>
           <Route path="/cart" element={<Cart/>}></Route>
+          <Route path="/detail/:id" element={<Detail/>}></Route>
         </>}
       </Routes>
     </Router>

@@ -38,18 +38,16 @@ const Shop3 = () =>{
                 <div className='product_list'>
                     <ul>
                         {data.map((data)=> {
+                            const detailurl = `/detail/${data.id}`;
                             return (
                                 <li>
-                                <a>
+                                <a className="product_list_a"href={detailurl}>
                                     <div>
                                     <img style={{width:"100%"}} src="https://thumbs.dreamstime.com/b/transparent-designer-must-have-fake-background-39672616.jpg"/>
                                     </div>
                                     <div>
-                                        <div>{data.item_name}</div>
-                                        <div>상품 설명</div>
-                                        <div>
-                                            <div>{data.price}원</div>
-                                        </div>
+                                    <div style={{float:"left"}}>{data.item_name}</div>
+                                    <div style={{float:"right"}}>{data.price}원</div>
                                     </div>
                                 </a>
                             </li>

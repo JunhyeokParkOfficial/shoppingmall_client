@@ -1,21 +1,22 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Axios } from '../../CustomAxios';
 
 const Shop1 = () =>{
     const [data,setData] = useState([]);
-    const uri = "/product";
+    const uri = "http://localhost:3001/product";
 
     //상품데이터 GET
     const getProduct =() =>{
-      Axios.get(uri)
+      axios.get(uri)
       .then((response)=>{
         return response.data.filter((product)=>product.item_status==="판매 중"&&product.category==="CATEGORY1")}).then((data)=>setData(data));
     }
     useEffect(()=>{
         getProduct();
     },[]);
+    
     return (
         <div className="product_container">
             <div className="product_content">
@@ -39,15 +40,17 @@ const Shop1 = () =>{
                 <div className='product_list'>
                     <ul>
                         {data.map((data)=> {
+                            const detailurl = `/detail/${data.id}`;
+                            console.log(data.id);
                             return (
                                 <li>
-                                <a>
+                                <a className="product_list_a"href={detailurl}>
                                     <div>
                                     <img style={{width:"100%"}} src="https://thumbs.dreamstime.com/b/transparent-designer-must-have-fake-background-39672616.jpg"/>
                                     </div>
                                     <div>
-                                        <div>{data.item_name}</div>
-                                        <div>{data.price}원</div>
+                                        <div style={{float:"left"}}>{data.item_name}</div>
+                                        <div style={{float:"right"}}>{data.price}원</div>
                                     </div>
                                 </a>
                             </li>
