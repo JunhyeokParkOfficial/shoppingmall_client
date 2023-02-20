@@ -8,7 +8,7 @@ const initUser = {
 
 //초기 상태
 const initialState = {
-  isLoggedIn: false,
+  isLoggedIn: true,
   info: initUser,
 };
 
