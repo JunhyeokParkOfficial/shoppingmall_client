@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Detail = () => {
+    const user = useSelector(state=>state.user);
+    const navigate = useNavigate();
     const {id} = useParams();
     const [data,setData] = useState([]);
     const [count,setCount] = useState(0);
@@ -22,6 +25,21 @@ const Detail = () => {
     }
     const onPlusClick = () => {
         setCount(count+1);
+    }
+
+    const onCartClick = () => {
+        if(!user.isLoggedIn){
+            navigate("/login");
+        }
+        const postdata = {"item_id":data.item_id,"count":count};
+        const uri = "/cart"
+        axios.post(uri,postdata);
+        document.querySelector(".popup_container_hidden").classList.add("popup_container");
+        document.querySelector(".popup_container").classList.remove("popup_container_hidden");
+    }
+    const onXbtnClick = () => {
+        document.querySelector(".popup_container").classList.add("popup_container_hidden");
+        document.querySelector(".popup_container_hidden").classList.remove("popup_container");
     }
     return (
         <div className="detail_container">
@@ -50,7 +68,7 @@ const Detail = () => {
                     <span className="detail_title_totalprice_price">{data.price*count}원</span>
                 </div>
                 <div className="detail_title_btns">
-                    <div className="detail_title_btn" style={{float:"left", marginLeft:"70px"}}>장바구니</div>
+                    <div className="detail_title_btn"  onClick={onCartClick}style={{float:"left", marginLeft:"70px"}}><a>장바구니</a></div>
                     <div className="detail_title_btn" style={{float:"right", backgroundColor:"black", color:"white"}}>바로 구매</div>
                 </div>
             </div>
@@ -61,7 +79,24 @@ const Detail = () => {
                 <div>상세정보</div>
                 <div>{}</div>
             </div>
-            
+            <div className="popup_container_hidden">
+                <div className="cart_popup">
+                    <div className="cart_popup_x">
+                    <button onClick={onXbtnClick}>
+                        Ⅹ
+                    </button>
+                    </div>
+                    장바구니에 상품을 담았습니다.
+                    <div className="gocart_link">
+                    <a href="/cart">
+                        <div>
+                            장바구니 바로가기
+                        </div>
+                    </a>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
     )
 }
