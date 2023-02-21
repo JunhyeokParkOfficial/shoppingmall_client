@@ -8,7 +8,7 @@ const Detail = () => {
     const navigate = useNavigate();
     const {id} = useParams();
     const [data,setData] = useState([]);
-    const [count,setCount] = useState(0);
+    const [count,setCount] = useState(1);
     //상품데이터 GET
     const getProduct =() =>{
         console.log(id);
