@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route,Routes} from 'react-router-dom';
 import Header from './routes/Header/Header';
 import All from './routes/Shop/All';
-import Cart from './routes/Cart';
+import Cart from './routes/Cart/Cart';
 import Dashboard from './routes/admin/Dashboard';
 import HeaderAdmin from './routes/Header/HeaderAdmin';
 import Home from './routes/Home';
