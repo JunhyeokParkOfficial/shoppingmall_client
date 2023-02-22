@@ -11,9 +11,6 @@ import Order from './routes/admin/Order';
 import ProductReg from './routes/admin/ProductReg';
 import Info from './routes/Mypage/Info';
 import MypageMain from './routes/Mypage/MypageMain';
-import Shop1 from './routes/Shop/Shop1';
-import Shop2 from './routes/Shop/Shop2';
-import Shop3 from './routes/Shop/Shop3';
 import './App.css';
 import { useSelector } from 'react-redux';
 import Detail from './routes/Shop/Detail';
@@ -30,18 +27,15 @@ function App() {
       {user.info.role==="admin"?<HeaderAdmin/>:<Header/>}
       <Routes>
         {user.info.role==="admin"?<>
-          <Route path="/admin/dashboard" element={<Dashboard/>}></Route>
-          <Route path="/admin/product" element={<AdminManage/>}></Route>
+          <Route path="/admin/" element={<Dashboard/>}></Route>
+          <Route path="/admin/product/:id" element={<AdminManage/>}></Route>
           <Route path="/admin/product/register" element={<ProductReg/>}></Route>
           <Route path="/admin/order" element={<Order/>}></Route>
           <Route path="/admin/product/edit/:id" element={<ProductEdit/>}></Route>
         </>
         :<>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/category/0" element={<All />}></Route>
-          <Route path="/category/1" element={<Shop1/>}></Route>
-          <Route path="/category/2" element={<Shop2/>}></Route>
-          <Route path="/category/3" element={<Shop3/>}></Route>
+          <Route path="/category/0/:id" element={<All />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register/>}></Route>
           <Route path="/mypage" element={<MypageMain/>}></Route>

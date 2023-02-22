@@ -10,7 +10,6 @@ const ProductReg = () =>{
     const [detail,setDetail] = useState("");
     const [stock, setStock] = useState();
     const [status,setStatus] = useState("판매 중");
-    const [category,setCategory] = useState("CATEGORY1");
     const [image,setImage] = useState();
     const navigate = useNavigate();
 
@@ -50,7 +49,6 @@ const ProductReg = () =>{
             "itemDetail":detail,
             "price": price,
             "stockNumber": stock,
-            "category":category,
             "imageUrl":image,
         }
         console.log(data);
@@ -92,14 +90,6 @@ const ProductReg = () =>{
                                     <option value="품절">품절</option>
                                 </select>
                             </td>
-                        </tr>
-                        <tr>
-                            <td>상품 카테고리</td>
-                            <td><select onChange={(e)=>setCategory(e.target.value)}>
-                                    <option value="CATEGORY1">CATEGORY1</option>
-                                    <option value="CATEGORY2">CATEGORY2</option>
-                                    <option value="CATEGORY3">CATEGORY3</option>
-                                </select></td>
                         </tr>
                         <tr>
                             <td>상품 이미지</td>
