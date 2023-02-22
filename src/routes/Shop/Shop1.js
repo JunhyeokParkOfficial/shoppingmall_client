@@ -1,28 +1,20 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Axios } from '../../CustomAxios';
 import Paging from '../paging';
+import ShopPaging from './ShopPaging';
 
 const Shop1 = () =>{
-    
+    const {id} = useParams();
     const [data,setData] = useState([]);
-    const [currentPosts, setCurrentPosts] = useState([]) //보여줄 포스트
-    const [page, setPage] = useState(1) //현재 페이지
-    const handlePageChange = (page) => { console.log(page);setPage(page) }
-    const [postPerPage] = useState(10); //페이지당 포스트 개수
-    const indexOfLastPost = page * postPerPage
-    const indexOfFirstPost = indexOfLastPost - postPerPage
 
     useEffect(()=>{
         getProduct();
     },[])
-    useEffect(() => {
-        setCurrentPosts(data.slice(indexOfFirstPost, indexOfLastPost));
-    }, [data,page]);
     
     //상품데이터 GET
     const getProduct =async() =>{
-        const uri = "/product";
+        const uri = `/product_${id}`;
         await Axios.get(uri)
         .then((response)=>{
             return response.data.filter((product)=>product.itemStatus==="판매 중"&&product.category==="CATEGORY1")
@@ -36,23 +28,23 @@ const Shop1 = () =>{
                     <h2 className='category_title'>SHOP</h2>
                     <ul>
                         <li >
-                            <Link to="/category/0">ALL</Link>
+                            <a id="selected" href="/category/0/1">ALL</a>
                         </li>
                         <li>
-                            <Link id="selected" to="/category/1">CATEGORY1</Link>
+                            <a href="/category/1/1">CATEGORY1</a>
                         </li>
                         <li>
-                            <Link to="/category/2">CATEGORY2</Link>
+                            <a href="/category/2/1">CATEGORY2</a>
                         </li>
                         <li>
-                            <Link to="/category/3">CATEGORY3</Link>
+                            <a href="/category/3/1">CATEGORY3</a>
                         </li>
                     </ul>
                 </div>
                 <div className='product_list'>
                     <ul className='product_ul'>
                         {
-                        currentPosts.map((data)=> {
+                        data.map((data)=> {
                             console.log(data);
                             const detailurl = `/detail/${data.id}`;
                             return (
@@ -70,8 +62,7 @@ const Shop1 = () =>{
                             )
                         })}
                     </ul>
-                    <Paging totalCount={data.length} page={page} postPerPage={postPerPage} pageRangeDisplayed={5} 
-              handlePageChange={handlePageChange} />    
+                    <ShopPaging page={id}category={1}/>
                 </div>
             </div>
         </div>

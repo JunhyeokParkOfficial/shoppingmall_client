@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
 import { Axios } from "../../CustomAxios";
 import AdminMenu from "./AdminMenu";
 import AdminProduct from "./AdminProduct";
+import ManagePaging from "./ManagePaging";
 
 const AdminManage = () => {
+  const {id} = useParams();
    const [data,setData] = useState([]);
   const navigate = useNavigate();
    //상품 데이터 GET
-    const uri = "/product";
+    const uri = `/product/${id}`;
     const getProduct =() =>{
       Axios.get(uri)
       .then((response)=>{
@@ -55,6 +57,7 @@ const AdminManage = () => {
                     )}
                 </tbody>
               </table>
+              <ManagePaging page={id}/>
             </div> 
         </div>
       </>

@@ -1107,3 +1107,24 @@ ul{
     height: 30px;
     color: #101111;
   }
+
+  /*--------------------------------------numNavigator-----------------------------*/
+  .numNav a{
+    display: inline-block;
+    width: 30px;
+    font-size: 20px;
+    color: #000;
+    text-decoration: none;
+  }
+  .numNav div{
+    display: inline-block;
+    width: 20px;
+  }
+
+  .numNav{
+    width: 50%;
+    text-align: center;
+    margin:auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }

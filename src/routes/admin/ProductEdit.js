@@ -18,7 +18,6 @@ const ProductEdit = () =>{
                 setDetail(data.itemDetail);
                 setStock(data.stockNumber);
                 setStatus(data.status);
-                setCategory(data.category);
             }) 
     },[])
     const [name,setName] = useState("");
@@ -26,7 +25,6 @@ const ProductEdit = () =>{
     const [detail,setDetail] = useState("");
     const [stock, setStock] = useState();
     const [status,setStatus] = useState("판매 중");
-    const [category,setCategory] = useState("CATEGORY1");
     const navigate = useNavigate();
 
     const priceCheck = () => {
@@ -53,7 +51,6 @@ const ProductEdit = () =>{
             "itemDetail":detail,
             "price": price,
             "stockNumber": stock,
-            "category":category  
         }
         console.log(data);
         await Axios.put(uri,data)
@@ -95,14 +92,7 @@ const ProductEdit = () =>{
                                 </select>
                             </td>
                         </tr>
-                        <tr>
-                            <td>상품 카테고리</td>
-                            <td><select value={category} onChange={(e)=>setCategory(e.target.value)}>
-                                    <option value="CATEGORY1">CATEGORY1</option>
-                                    <option value="CATEGORY2">CATEGORY2</option>
-                                    <option value="CATEGORY3">CATEGORY3</option>
-                                </select></td>
-                        </tr>
+                        
                         <tr>
                             <td>상품 이미지</td>
                             <td><input type="file"/></td>

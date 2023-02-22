@@ -22,22 +22,13 @@ const Header = () => {
                         <ul className="menu">
                             <li className="drop">
                                 <p>
-                                    <Link to="/category/0">SHOP</Link>
+                                    <Link to="/category/0/1">SHOP</Link>
                                 </p>
                                 <ul className="sub sub1">
                                     <div className="inner">
                                         <ul>
                                             <p>
-                                                <Link to='/category/0'>ALL</Link>
-                                            </p>
-                                            <p>
-                                                <Link to='/category/1'>CATEGORY1</Link>
-                                            </p>
-                                            <p>
-                                                <Link to='/category/2'>CATEGORY2</Link>
-                                            </p>
-                                            <p>
-                                                <Link to='/category/3'>CATEGORY3</Link>
+                                                <a href='/category/0/1'>ALL</a>
                                             </p>
                                         </ul>
                                     </div>

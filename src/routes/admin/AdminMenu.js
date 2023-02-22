@@ -12,14 +12,14 @@ const AdminMenu = ({menu}) => {
                     <h2 className='category_title'>관리자 메뉴</h2>
                     <ul>
                         <li >
-                            <Link to='/admin/dashboard'>대시보드</Link>
+                            <Link to='/admin/'>대시보드</Link>
                         </li>
                         <li>
                             <Link to='/admin/order'>주문조회</Link>
                         </li>
                         <li>
                         <div className="product_manage">
-                            <Link to='/admin/product'>상품관리</Link>
+                            <Link to='/admin/product/1'>상품관리</Link>
                         </div>
                         </li>
                     </ul>
