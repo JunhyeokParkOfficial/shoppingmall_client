@@ -9,7 +9,6 @@ import Login from './routes/Login';
 import Register from './routes/Register';
 import Order from './routes/admin/Order';
 import ProductReg from './routes/admin/ProductReg';
-import AdminProducts from './routes/admin/AdminProducts';
 import Info from './routes/Mypage/Info';
 import MypageMain from './routes/Mypage/MypageMain';
 import Shop1 from './routes/Shop/Shop1';
@@ -18,6 +17,8 @@ import Shop3 from './routes/Shop/Shop3';
 import './App.css';
 import { useSelector } from 'react-redux';
 import Detail from './routes/Shop/Detail';
+import ProductEdit from './routes/admin/ProductEdit';
+import AdminManage from './routes/admin/AdminManage';
 
 function App() {
   // 유저 상태 가져옴
@@ -30,9 +31,10 @@ function App() {
       <Routes>
         {user.info.role==="admin"?<>
           <Route path="/admin/dashboard" element={<Dashboard/>}></Route>
+          <Route path="/admin/product" element={<AdminManage/>}></Route>
           <Route path="/admin/product/register" element={<ProductReg/>}></Route>
-          <Route path="/admin/product" element={<AdminProducts/>}></Route>
           <Route path="/admin/order" element={<Order/>}></Route>
+          <Route path="/admin/product/edit/:id" element={<ProductEdit/>}></Route>
         </>
         :<>
           <Route path="/" element={<Home />}></Route>

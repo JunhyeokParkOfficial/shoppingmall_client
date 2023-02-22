@@ -31,7 +31,7 @@ const Detail = () => {
         if(!user.isLoggedIn){
             navigate("/login");
         }
-        const postdata = {"item_id":data.item_id,"count":count};
+        const postdata = {"itemId":id,"count":count};
         const uri = "/cart"
         axios.post(uri,postdata);
         document.querySelector(".popup_container_hidden").classList.add("popup_container");
@@ -49,7 +49,7 @@ const Detail = () => {
             </div>
             <div className="detail_title">
                 <div className="detail_title_name">
-                    {data.item_name}
+                    {data.itemName}
                 </div>
                 <div className="detail_title_price">
                     <span className="detail_title_saleprice">판매가</span>
@@ -77,7 +77,9 @@ const Detail = () => {
             <div style={{marginTop:"100px"}}>
                 <hr></hr>
                 <div>상세정보</div>
-                <div>{}</div>
+                <div style={{marginTop:"30px"}}>
+                    <pre>{data.itemDetail}</pre>
+                </div>
             </div>
             <div className="popup_container_hidden">
                 <div className="cart_popup">
