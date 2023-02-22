@@ -1,8 +1,11 @@
+import AdminMenu from "./AdminMenu";
+
 const Order = () => {
     return (
-        <div>
+        <>
+            <AdminMenu/>
             <h1>주문조회</h1>
-        </div>
+        </>
     )
 }
 

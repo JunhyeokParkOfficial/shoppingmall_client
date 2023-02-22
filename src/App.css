@@ -114,8 +114,8 @@
 .left_menu{
     background-color: #646262;
     float: left;
-    width: 15%;
-    height: 100vh;
+    width: 10%;
+    height: 100%;
     border-right: 1px solid black;
 }
 .left_menu ul{
@@ -383,7 +383,7 @@ ul{
     padding-left: 40px;
 }
 
-.info_form table th,td{
+.info_form table th,.info_form table td{
     border-bottom: 1px solid #e0e0e0;
    padding: 20px;
    font-weight: 500;
@@ -458,41 +458,7 @@ ul{
     margin-bottom: 25px;
 }
 
-/*---------------------------------------- Products------------------------------------ */
-.Product{
-    width: 84%;
-    float: right;
-}
 
-.product_table{
-    margin: 0;
-    border: 1px solid black;
-}
-
-.product_table_container{
-    position: relative;
-    width: 50%;
-    margin: 0 auto;
-}
-.product_table_container table{
-    border: 1px solid #d7d5d5;
-    width: 100%;
-    border-left: 0px;
-    border-right: 0px;
-    border-collapse: collapse;
-}
-
-.product_table td{
-    width: 20%;
-}
-.product_table tr{
-    height: 40px;
-}
-
-.Product a{
-    text-decoration: none;
-    color: black;
-}
 
 /* ------------------------------------------ showProduct ------------------------------------------ */
 .product_container{
@@ -554,19 +520,19 @@ ul{
     float: right;
 }
 
-.product_list ul{
+.product_ul{
     display: flex;
     flex-wrap: wrap;
 }
 
-.product_list li{
+.product_list .product_ul li{
     width: 30%;
     margin-left: 20px;
     margin-bottom: 40px;
 }
 
 
-.product_list li a{
+.product_list .product_ul li a{
     width: 100%;
 }
 
@@ -983,3 +949,161 @@ ul{
     background-color: white;
     border: solid 0.5px #474646;
 }
+
+
+/* --------------------------admin-------------------------------------*/
+/*---------------------------------------- AdminProducts------------------------------------ */
+.adminProduct{
+    width: 84%;
+    float: right;
+}
+
+.product_table{
+    margin: 0;
+    border: 1px solid black;
+}
+
+.product_table_container{
+    position: relative;
+    margin: 0 auto;
+}
+.product_table_container table{
+    border: 1px solid #d7d5d5;
+    width: 100%;
+    border-left: 0px;
+    border-right: 0px;
+    border-collapse: collapse;
+}
+
+.product_table td{
+    width: 20%;
+}
+.product_table tr{
+    height: 40px;
+}
+
+.Product a{
+    text-decoration: none;
+    color: black;
+}
+.product_register_table{
+    margin-left: 100px;
+    margin-top: 30px;
+    width: 750px;
+}
+.product_register_table td{
+    border-bottom: 1px solid #e0e0e0;
+   padding: 20px;
+   font-weight: 500;
+   text-align: left;
+}
+
+
+.admin_category_list{
+    padding: 20px;
+    padding-bottom: 20px;
+    width: 200px;
+    float: left;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025),0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+}
+
+
+.admin_category_list ul li{
+    margin:12px 0;
+}
+
+.admin_category_list ul li a{
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 28px;
+    color: #5d5d5d;
+    text-align: left;
+}
+
+.admin_category_list ul li:hover a{
+    font-size: 18px;
+    font-weight: 1000;
+    color: #000;
+}
+
+.product_register_btns{
+    margin-top: 20px;
+    float: right;
+    position: relative;
+        right: 300px;   
+}
+
+
+.product_register_btn{
+    width: 150px;
+    height: 70px;
+    font-size: 17px;
+}
+
+.admin_selected_menu{
+    font-size: 18px;
+    font-weight: 1000;
+    color: #000;
+}
+
+
+/*-------------------------------pagenation----------------------------------------*/
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+  }
+ 
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+ 
+  ul.pagination li {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+  }
+ 
+  ul.pagination li:first-child{
+    border-radius: 5px 0 0 5px;
+  }
+ 
+  ul.pagination li:last-child{
+    border-radius: 0 5px 5px 0;
+  }
+ 
+  ul.pagination li a {
+    text-decoration: none;
+    color: #0a0a0a;
+    font-size: 1rem;
+  }
+ 
+  ul.pagination li.active a {
+    color: white;
+  }
+ 
+  ul.pagination li.active {
+    background-color: #0c0d0e;
+  }
+ 
+  ul.pagination li a:hover,
+  ul.pagination li a.active {
+    color: rgb(152, 149, 149);
+  }
+ 
+  .page-selection {
+    width: 48px;
+    height: 30px;
+    color: #101111;
+  }

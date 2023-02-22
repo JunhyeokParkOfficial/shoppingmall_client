@@ -1,20 +1,34 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Axios } from '../../CustomAxios';
+import Paging from '../paging';
 
 const All = () =>{
+    
     const [data,setData] = useState([]);
-    const uri = "/product";
-
-    //상품데이터 GET
-    const getProduct =() =>{
-      Axios.get(uri)
-      .then((response)=>{
-        return response.data.filter((product)=>product.item_status==="판매 중")}).then((data)=>setData(data));
-    }
+    const [currentPosts, setCurrentPosts] = useState([]) //보여줄 포스트
+    const [page, setPage] = useState(1) //현재 페이지
+    const handlePageChange = (page) => { setPage(page) }
+    const [postPerPage] = useState(3); //페이지당 포스트 개수
+    const indexOfLastPost = page * postPerPage
+    const indexOfFirstPost = indexOfLastPost - postPerPage
+    
     useEffect(()=>{
         getProduct();
-    },[]);
+    },[])
+    useEffect(() => {
+        setCurrentPosts(data.slice(indexOfFirstPost, indexOfLastPost));
+    }, [data,page]);
+    
+    //상품데이터 GET
+    const getProduct =async() =>{
+        const uri = "/product";
+        await Axios.get(uri)
+        .then((response)=>{
+            return response.data.filter((product)=>product.itemStatus==="판매 중")
+        })
+        .then((data)=>setData(data));
+    }
     return (
         <div className="product_container">
             <div className="product_content">
@@ -22,10 +36,10 @@ const All = () =>{
                     <h2 className='category_title'>SHOP</h2>
                     <ul>
                         <li >
-                            <Link id="selected" to="/category/0">ALL</Link>
+                            <a id="selected" href="/category/0">ALL</a>
                         </li>
                         <li>
-                            <Link to="/category/1">CATEGORY1</Link>
+                            <a href="/category/1">CATEGORY1</a>
                         </li>
                         <li>
                             <Link to="/category/2">CATEGORY2</Link>
@@ -36,8 +50,10 @@ const All = () =>{
                     </ul>
                 </div>
                 <div className='product_list'>
-                    <ul>
-                        {data.map((data)=> {
+                    <ul className='product_ul'>
+                        {
+                        currentPosts.map((data)=> {
+                            console.log(data);
                             const detailurl = `/detail/${data.id}`;
                             return (
                                 <li>
@@ -46,7 +62,7 @@ const All = () =>{
                                     <img style={{width:"100%"}} src="https://thumbs.dreamstime.com/b/transparent-designer-must-have-fake-background-39672616.jpg"/>
                                     </div>
                                     <div>
-                                        <div style={{float:"left"}}>{data.item_name}</div>
+                                        <div style={{float:"left"}}>{data.itemName}</div>
                                         <div style={{float:"right"}}>{data.price}원</div>
                                     </div>
                                 </a>
@@ -54,6 +70,8 @@ const All = () =>{
                             )
                         })}
                     </ul>
+                    <Paging totalCount={data.length} page={page} postPerPage={postPerPage} pageRangeDisplayed={5} 
+              handlePageChange={handlePageChange} />    
                 </div>
             </div>
         </div>

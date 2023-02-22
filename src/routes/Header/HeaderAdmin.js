@@ -1,10 +1,12 @@
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { remove_userInfo } from '../../data/authReducer';
 
 const HeaderAdmin = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const logoutClick = () =>{
-        localStorage.clear();
-        console.log("logout!!");
+        dispatch(remove_userInfo());
         navigate(`/`);
     }
     return (
@@ -19,28 +21,8 @@ const HeaderAdmin = () => {
                     </div>
                 </div>
             </div>
-       </div>
-       <div>
-       <div className="left_menu">
-           <ul>
-               <li>
-                   <div>
-                       <Link to='/admin/dashboard'>대시보드</Link>
-                   </div>
-               </li>
-               <li>
-                   <div>
-                       <Link to='/admin/order'>주문조회</Link>
-                   </div>
-               </li>
-               <li>
-                   <div>
-                       <Link to='/admin/product'>상품관리</Link>
-                   </div>
-               </li>
-           </ul>
-       </div>
-   </div></>
+        </div>
+        </>
     )
 }
 

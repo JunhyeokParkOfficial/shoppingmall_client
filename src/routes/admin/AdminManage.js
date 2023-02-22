@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom/dist";
 import { Axios } from "../../CustomAxios";
+import AdminMenu from "./AdminMenu";
 import AdminProduct from "./AdminProduct";
 
-const AdminProducts = () => {
+const AdminManage = () => {
    const [data,setData] = useState([]);
-
+  const navigate = useNavigate();
    //상품 데이터 GET
     const uri = "/product";
     const getProduct =() =>{
@@ -20,12 +22,17 @@ const AdminProducts = () => {
         getProduct();
     },[]);
 
+    const onRegisterClick = () => {
+      navigate("/admin/product/register");
+    }
     return (
-      <div className="Product">
+      <>
+        <AdminMenu menu={"상품관리"}/>
+        <div className="adminProduct" style={{float:"right",width:"70%",marginBottom:"120px",marginTop:"50px",marginRight:"90px"}}>
             <div style={{marginTop:"30px"}}>
-            <button><Link to="/admin/product/register">상품 등록</Link></button>
+            <button onClick={onRegisterClick}>상품 등록</button>
             </div>
-            <hr style={{width:"90%", float:"left"}}></hr>
+            <hr style={{width:"100%", float:"left"}}></hr>
             <div style={{textAlign:"center",marginTop:"50px",marginBottom:"50px"}}>
               <h3>상품 목록</h3>
             </div>
@@ -50,7 +57,8 @@ const AdminProducts = () => {
               </table>
             </div> 
         </div>
+      </>
     )
 }
 
-export default AdminProducts;
+export default AdminManage;
