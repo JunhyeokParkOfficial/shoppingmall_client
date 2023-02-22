@@ -11,8 +11,7 @@ const Detail = () => {
     const [count,setCount] = useState(1);
     //상품데이터 GET
     const getProduct =() =>{
-        console.log(id);
-        const uri = `http://localhost:3001/product/${id}`;
+        const uri = `http://localhost:3001/product_1/${id}`;
       axios.get(uri)
         .then((res)=>{setData(res.data);console.log(res.data)});
     }
@@ -40,6 +39,16 @@ const Detail = () => {
     const onXbtnClick = () => {
         document.querySelector(".popup_container").classList.add("popup_container_hidden");
         document.querySelector(".popup_container_hidden").classList.remove("popup_container");
+    }
+
+    const onOrderClick = () => {
+        let res = window.confirm("정말로 상품을 구매하시겠습니까?");
+        if(res){
+            const uri = "http://localhost:3001/order"
+            let postdata = {itemId:data.id,count:count};
+            axios.post(uri,postdata);
+            navigate("/mypage/order");
+        }
     }
     return (
         <div className="detail_container">
@@ -69,7 +78,7 @@ const Detail = () => {
                 </div>
                 <div className="detail_title_btns">
                     <div className="detail_title_btn"  onClick={onCartClick}style={{float:"left", marginLeft:"70px"}}><a>장바구니</a></div>
-                    <div className="detail_title_btn" style={{float:"right", backgroundColor:"black", color:"white"}}>바로 구매</div>
+                    <div className="detail_title_btn" onClick={onOrderClick}style={{float:"right", backgroundColor:"black", color:"white"}}>바로 구매</div>
                 </div>
             </div>
            

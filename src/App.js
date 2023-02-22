@@ -7,7 +7,6 @@ import HeaderAdmin from './routes/Header/HeaderAdmin';
 import Home from './routes/Home';
 import Login from './routes/Login';
 import Register from './routes/Register';
-import Order from './routes/admin/Order';
 import ProductReg from './routes/admin/ProductReg';
 import Info from './routes/Mypage/Info';
 import MypageMain from './routes/Mypage/MypageMain';
@@ -16,6 +15,8 @@ import { useSelector } from 'react-redux';
 import Detail from './routes/Shop/Detail';
 import ProductEdit from './routes/admin/ProductEdit';
 import AdminManage from './routes/admin/AdminManage';
+import MyOrder from './routes/Mypage/MyOrder';
+import OrderManage from './routes/admin/OrderManage';
 
 function App() {
   // 유저 상태 가져옴
@@ -30,7 +31,7 @@ function App() {
           <Route path="/admin/" element={<Dashboard/>}></Route>
           <Route path="/admin/product/:id" element={<AdminManage/>}></Route>
           <Route path="/admin/product/register" element={<ProductReg/>}></Route>
-          <Route path="/admin/order" element={<Order/>}></Route>
+          <Route path="/admin/order" element={<OrderManage/>}></Route>
           <Route path="/admin/product/edit/:id" element={<ProductEdit/>}></Route>
         </>
         :<>
@@ -40,6 +41,7 @@ function App() {
           <Route path="/register" element={<Register/>}></Route>
           <Route path="/mypage" element={<MypageMain/>}></Route>
           <Route path="/mypage/information" element={<Info />}></Route>
+          <Route path="/mypage/order" element={<MyOrder/>}></Route>
           <Route path="/cart" element={<Cart/>}></Route>
           <Route path="/detail/:id" element={<Detail/>}></Route>
         </>}
