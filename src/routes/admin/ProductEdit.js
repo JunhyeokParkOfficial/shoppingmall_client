@@ -12,7 +12,7 @@ const ProductEdit = () =>{
             .then((res)=>{
                 return res.data;
             })
-            .then((data)=>{
+            .then((data)=>{ 
                 setName(data.itemName);
                 setPrice(data.price);
                 setDetail(data.itemDetail);
