@@ -42,7 +42,8 @@ const ProductReg = () =>{
             return;
         }
         
-        const uri = "/product";
+        //const uri = "/api/v1/admin/register";
+        const uri = "http://localhost:3001/api_v1_admin_register";
         const data = {
             "itemName": name,
             "itemStatus": status,
@@ -51,10 +52,10 @@ const ProductReg = () =>{
             "stockNumber": stock,
             "imageUrl":image,
         }
-        console.log(data);
-        await Axios.post(uri,data)
+        //await Axios.post(uri,data)
+        await axios.post(uri,data)
         .then(()=>
-            {navigate("/admin/product");}
+            {navigate("/admin/product/1");}
         )
         .catch();
         
@@ -86,7 +87,7 @@ const ProductReg = () =>{
                             <td>상품 상태</td>
                             <td>
                                 <select onChange={(e)=>setStatus(e.target.value)}>
-                                    <option value="판매 중">판매 중</option>
+                                    <option value="FOR_SALE">판매 중</option>
                                     <option value="품절">품절</option>
                                 </select>
                             </td>

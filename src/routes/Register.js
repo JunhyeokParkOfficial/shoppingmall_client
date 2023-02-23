@@ -36,8 +36,10 @@ const Register = () =>{
   
   //비밀번호 형식 체크
   const PWCheck = () => {
-    let RegExp =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{10,}$/;
-    if(RegExp.test(PW))return true;
+    let RegExp1 = /(?=.*?[a-z])(?=.*?[A-Z])/;
+    let RegExp2 = /(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
+    let RegExp3 = /^.{8,18}$/;
+    if(RegExp1.test(PW)&&RegExp2.test(PW)&&RegExp3.test(PW))return true;
     else return false;
   }
 
@@ -83,7 +85,7 @@ const Register = () =>{
 
   //입력된 정보  POST
   const requestReg = (data) =>{
-    const uri = "/member_new";
+    const uri = "/api/v1/auth/join";
     Axios.post(uri, data).then(response => response.data)
     .then((res) => {
       console.log(res);
@@ -91,15 +93,8 @@ const Register = () =>{
       navigate("/");
     })
     .catch((err)=>{
-      if(err.status === 500) {
-        alert("이미 가입된 이메일입니다");
-      }
-      else if(err.status === 400) {
-        alert("회원정보를 입력하세요");
-      }
-      else {
-        alert("회원가입에 실패했습니다");
-      }
+      console.log(err.response);
+      alert("회원가입할 수 없습니다");
     });
   }
   //회원가입 클릭

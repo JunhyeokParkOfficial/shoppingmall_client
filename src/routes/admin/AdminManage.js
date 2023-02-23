@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
@@ -11,11 +12,11 @@ const AdminManage = () => {
    const [data,setData] = useState([]);
   const navigate = useNavigate();
    //상품 데이터 GET
-    const uri = `/product/${id}`;
+    const uri = `/api/v1/admin?page=${id}`;
     const getProduct =() =>{
       Axios.get(uri)
       .then((response)=>{
-      setData(response.data);
+      setData(response.data.content);
       console.log(response.data);
       })
     }
@@ -47,7 +48,6 @@ const AdminManage = () => {
                     <td></td>
                     <td className="">상품명</td>
                     <td className="">가격</td>
-                    <td className="">재고</td>
                     <td className="">상품 상태</td>
                     <td></td>
                     <td></td>

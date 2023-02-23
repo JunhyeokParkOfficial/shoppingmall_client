@@ -87,7 +87,7 @@ const ProductEdit = () =>{
                             <td>상품 상태</td>
                             <td>
                                 <select value={status} onChange={(e)=>setStatus(e.target.value)}>
-                                    <option value="판매 중">판매 중</option>
+                                    <option value="FOR_SALE">판매 중</option>
                                     <option value="품절">품절</option>
                                 </select>
                             </td>
