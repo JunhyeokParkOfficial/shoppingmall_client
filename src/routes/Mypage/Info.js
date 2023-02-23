@@ -4,6 +4,7 @@ import PhoneNumber from "./PhoneNumber";
 import { useNavigate } from "react-router-dom";
 import { Axios } from "../../CustomAxios";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Info = () => {
     const [data,setData] = useState([]);
@@ -18,22 +19,22 @@ const Info = () => {
     const user = useSelector(state=>state.user);
 
     //개인정보 GET
-    const uri = "/member_new";
     const getInfo =async() =>{
         const userId = user.info.userId;
+        const uri = "/api/v1/member/me";
         await Axios.get(`${uri}/${userId}`)
-        .then((res)=>res.data)
+        .then((response)=>response.data)
         .then((data)=>{
-            if(data.phone_number){
-                if(data[0].phone_number.length===13){
-                    setA(data.phone_number.substr(0,3));
-                    setB(data.phone_number.substr(4,4));
-                    setC(data.phone_number.substr(9,4));
+            if(data.phone){
+                if(data.phone.length===13){
+                    setA(data.phone.substr(0,3));
+                    setB(data.phone.substr(4,4));
+                    setC(data.phone.substr(9,4));
                 }
-                else if(data.phone_number.length===12){
-                    setA(data.phone_number.substr(0,3));
-                    setB(data.phone_number.substr(4,3));
-                    setC(data.phone_number.substr(8,4));
+                else if(data.phone.length===12){
+                    setA(data.phone.substr(0,3));
+                    setB(data.phone.substr(4,3));
+                    setC(data.phone.substr(8,4));
                 }
             }
             setData(data);
@@ -84,14 +85,18 @@ const Info = () => {
            else{
                 putData = {
                     "address": data.address,
-                    "email": data.email,
                     "name": data.name,
                     "password": newPW1,
-                    "phone_number":`${a}-${b}-${c}`,
+                    "phone":`${a}-${b}-${c}`,
                 }
             }
-            Axios.put(`${uri}/${data.id}`,putData);
-            navigate("/");
+            const uri = "/api/v1/member/update";
+            Axios.put(uri,putData)
+            .then(window.location.reload())
+            .catch((err)=>{
+                alert("정확한 정보를 입력하세요");
+            })
+            
         }
     }
     return (
