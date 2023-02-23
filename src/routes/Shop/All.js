@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Axios } from '../../CustomAxios';
@@ -15,10 +16,10 @@ const All = () =>{
     
     //상품데이터 GET
     const getProduct =async() =>{
-        const uri = `/product_${id}`;
+        const uri = `/api/v1/item?page=${id-1}`;
         await Axios.get(uri)
         .then((response)=>{
-            return response.data.filter((product)=>product.itemStatus==="판매 중")
+            return response.data.content.filter((product)=>product.itemStatus==="FOR_SALE")
         })
         .then((data)=>setData(data));
     }
@@ -28,7 +29,7 @@ const All = () =>{
                 <div className='category_list'>
                     <h2 className='category_title'>SHOP</h2>
                     <ul>
-                        <li >
+                        <li>
                             <a id="selected" href="/category/0/1">ALL</a>
                         </li>
                         
@@ -44,7 +45,7 @@ const All = () =>{
                                 <li>
                                 <a className="product_list_a"href={detailurl}>
                                     <div>
-                                    <img style={{width:"100%"}} src="https://thumbs.dreamstime.com/b/transparent-designer-must-have-fake-background-39672616.jpg"/>
+                                    <img style={{width:"100%"}} src={data.imageUrl}/>
                                     </div>
                                     <div>
                                         <div style={{float:"left"}}>{data.itemName}</div>
