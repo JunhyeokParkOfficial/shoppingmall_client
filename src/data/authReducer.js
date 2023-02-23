@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initUser = {
   userId: -1,
   userEmail: "",
-  role: "",
+  role: "ROLE_ADMIN",
 };
 
 //초기 상태
