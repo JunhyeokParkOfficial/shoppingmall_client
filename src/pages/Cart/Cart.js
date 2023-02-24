@@ -12,7 +12,7 @@ const Cart = () =>{
     const getData = () =>{
         const uri = `/api/v1/cart?page=${id-1}`;
         Axios.get(uri)
-        .then((res)=>{setData(res.data);console.log(res)});
+        .then((res)=>{setData(res.data.content);console.log(res)});
     }
     useEffect(()=>{
         getData();
@@ -22,6 +22,7 @@ const Cart = () =>{
         const uri = "/api/v1/cartItem/orders";
         let temp = [];
         list.forEach((product)=>{temp=[...temp,{cartItemId:product}]});
+        console.log(temp);
         Axios.post(uri,temp)
         .then(()=>{
             alert("주문이 완료되었습니다");
@@ -75,7 +76,7 @@ const Cart = () =>{
                     <div style={{width: "200px"}}className="cart_table_top_cell">주문금액</div>
                     <div style={{width: "15%"}}className="cart_table_top_cell">선택</div>
                 </div>
-                {data.map((data)=>{
+                {!data?<></>:data.map((data)=>{
                     return(
                         <CartItem data={data} getData={getData} checkedItemHandler={checkedItemHandler}/>
                     )

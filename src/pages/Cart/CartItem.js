@@ -6,12 +6,13 @@ const CartItem = ({data,getData,checkedItemHandler}) => {
     const [count,setCount] = useState(data.count);
 
     useEffect(()=>{
-        const uri = `/api/v1/cartItem?itemId=${data.id}&count=${count}`;
+        console.log(data);
+        const uri = `/api/v1/cartItem?itemId=${data.cartItemsId}&count=${count}`;
         Axios.put(uri);
     },[count,data])
 
     const checkHandler = (e) => {
-        checkedItemHandler(data.id, e.target.checked);
+        checkedItemHandler(data.cartItemsId, e.target.checked);
     };
 
     const onMinusClick = () => {
@@ -21,7 +22,7 @@ const CartItem = ({data,getData,checkedItemHandler}) => {
         setCount(count+1);
     }
     const onDeleteClick = () => {
-        const uri = `/api/v1/cartItem?itemId=${data.id}`;
+        const uri = `/api/v1/cartItem?itemId=${data.cartItemsId}`;
         Axios.delete(uri);
         getData();
     }
@@ -32,9 +33,9 @@ const CartItem = ({data,getData,checkedItemHandler}) => {
             </div>
             <div className="cart_table_cell_info">
                 <div style={{display:"flex"}}>
-                    <img className="cart_img" src="https://thumbs.dreamstime.com/b/transparent-designer-must-have-fake-background-39672616.jpg"/>
+                    <img className="cart_img" src={data.imageUrl}/>
                     <div style={{marginLeft:"10px"}}>
-                        <div className="cart_item_name">{data.item_name}</div>
+                        <div className="cart_item_name">{data.itemName}</div>
                         <div className="cart_item_price">{data.price}원</div>
                     </div>
                 </div>
