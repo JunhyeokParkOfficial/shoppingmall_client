@@ -3,46 +3,43 @@ import { useEffect, useState } from "react";
 import { Axios } from "../../utils/CustomAxios";
 
 const Order = ({data,getData}) => {
-    const [count,setCount] = useState(data.count);
-
-    useEffect(()=>{
-        const uri = "http://localhost:3001/member_cart/"+data.id;
-        const temp = data;
-        temp.count = count;
-        axios.put(uri,temp);
-    },[count,data])
-
+    const onStatusHandler = () => {
+        if(data.orderStatus==="ORDER"){
+            return <>입금확인</>
+        }
+        else if(data.orderStatus==="WAITING"){
+            return <>입금대기</>
+        }
+        else return <>주문취소</>
+    }
     const onDeleteClick = () => {
         let del = window.confirm("정말 주문을 취소하시겠습니까?");
         if(del){
-            const uri = "api/v1/order/cancel?orderid="+data.id;
-            Axios.post(uri);
-            getData();
-            alert("주문이 취소되었습니다");
+            const uri = "/api/v1/order/cancel?orderId="+data.orderId;
+            Axios.post(uri)
+            .then(()=>{
+                window.location.reload();
+                getData();
+                console.log("getdata!!");
+            });
+            
         }
-        
     }
     return (
         <div className="order_table_bottom">
-            <div className="order_table_cell_info">
-                <div style={{display:"flex"}}>
-                    <img className="cart_img" src="https://thumbs.dreamstime.com/b/transparent-designer-must-have-fake-background-39672616.jpg"/>
-                    <div>
-                        <div className="order_item_name">{data.item_name}</div>
-                        <div className="order_item_price">{data.price}원</div>
-                    </div>
-                </div>
+            <div style={{width: "25%"}}className="order_table_cell_date">
+                <div>{data.orderDate}</div>
             </div>
-            <div className="order_table_cell_count">
-                <div style={{width:"108px", margin:"auto"}}>
-                    <div>
-                       {count}
-                    </div>
-                </div>
+            <div style={{width: "30%"}}className="order_table_cell_info">
+                <img style={{float:"left"}}className="order_img" src={data.orderItemDtoList[0].imageUrl}/>
+                <div style={{marginTop:"20px",textAlign:"left"}}>
+                    <div className="order_item_name">{data.orderItemDtoList[0].itemName}</div>
+                    <div className="order_item_price">{data.orderItemDtoList[0].itemPrice}원 X {data.orderItemDtoList[0].count}</div>
+                </div>      
             </div>
-            <div className="cart_table_cell_price">{count*data.price}원</div>
-            <div className="order_table_cell_status">{data.status}</div>
-            <div className="order_table_cell_choice"><button onClick={onDeleteClick}>주문취소</button></div>
+            <div style={{width: "15%"}}className="cart_table_cell_price">{data.orderPrice}원</div>
+            <div style={{width: "15%"}}className="order_table_cell_status">{onStatusHandler()}</div>
+            <div style={{width: "15%"}}className="order_table_cell_choice"><button onClick={onDeleteClick}>주문취소</button></div>
         </div>
     )
 }
