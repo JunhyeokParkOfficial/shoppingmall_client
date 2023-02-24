@@ -19,9 +19,8 @@ const Info = () => {
 
     //개인정보 GET
     const getInfo =async() =>{
-        const userId = user.info.userId;
         const uri = "/api/v1/member/me";
-        await Axios.get(`${uri}/${userId}`)
+        await Axios.get(uri)
         .then((response)=>response.data)
         .then((data)=>{
             if(data.phone){

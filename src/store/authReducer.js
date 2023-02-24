@@ -8,7 +8,7 @@ const initUser = {
 
 //초기 상태
 const initialState = {
-  isLoggedIn: true,
+  isLoggedIn: false,
   info: initUser,
 };
 
@@ -20,7 +20,7 @@ const authReducer = createSlice({
       state.isLoggedIn = true;
       state.info.userId = action.payload.id;
       state.info.userEmail = action.payload.email;
-      state.info.role = action.payload.authority.authorityStatus;
+      state.info.role = action.payload.authority[0].authorityStatus;
     },
     remove_userInfo: (state) => {
       state.isLoggedIn = false;
