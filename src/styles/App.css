@@ -1305,7 +1305,12 @@ ul{
     background-color: white;
     border: solid 0.5px #474646;
 }
-
+.order_img{
+    margin: 3px 15px 0px 25px;
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+}
 
 
 /*-----------------------------------admin_order-----------------------------------*/
