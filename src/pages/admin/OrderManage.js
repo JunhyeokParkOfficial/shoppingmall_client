@@ -10,7 +10,7 @@ const OrderManage = () =>{
     const [loading,setLoading] = useState(false);
     const [data,setData] = useState([]);
     const getData = () =>{
-        const uri = `api/v1/admin/orders?page=${id-1}&size=10`;
+        const uri = `/api/v1/admin/orders?page=${id-1}&size=10`;
         Axios.get(uri)
         .then((res)=>{setData(res.data.content);setLoading(true);console.log(res)});
     }

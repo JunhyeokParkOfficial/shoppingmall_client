@@ -11,7 +11,7 @@ const AdminManage = () => {
    const [data,setData] = useState([]);
   const navigate = useNavigate();
    //상품 데이터 GET
-    const uri = `/api/v1/admin?page=${id}`;
+    const uri = `/api/v1/admin?page=${id-1}&size=10`;
     const getProduct =() =>{
       Axios.get(uri)
       .then((response)=>{
