@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Axios } from '../utils/CustomAxios';
 import { useDispatch } from 'react-redux';
 import { login_success } from '../store/authReducer';
+import axios from 'axios';
 const Login = () =>{
     const [ID,setID] = useState("");
     const [PW,setPW] = useState("");
@@ -25,10 +26,12 @@ const Login = () =>{
         const data = {email:ID,password:PW};;
         Axios.post("/api/v1/auth/login",data)
         .then((res)=>{
+            console.log(res.data);
             dispatch(login_success(res.data));
             localStorage.setItem("accessToken",res.data.accessToken);
             localStorage.setItem("refreshToken",res.data.refreshToken);
-            if(res.data.authority.authorityStatus==="ROLE_ADMIN"){
+            if(res.data.authority[0].authorityStatus==="ROLE_ADMIN"){
+                console.log("관리자");
                 alert("관리자계정으로 로그인합니다");
                 navigate("/admin");
             }
@@ -38,7 +41,7 @@ const Login = () =>{
         })
         .catch((err)=>{
             alert("로그인에 실패했습니다");
-            console.log(err.response);    
+            console.log(err);    
         })    
     }
     

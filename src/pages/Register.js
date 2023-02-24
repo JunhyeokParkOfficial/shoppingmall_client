@@ -106,6 +106,7 @@ const Register = () =>{
     if(!PNCheck())alert("휴대전화번호를 확인해주십시오");
     //if(!addressCheck())alert("주소를 확인해주십시오");
     if(EmailCheck()&&PWCheck()&&(PW===PW2)&&nameCheck()&&PNCheck){
+      console.log("fdk;fsd");
       const data = {address:address,email:Email,name:name,password:PW,phone_number:`${PN1}-${PN2}-${PN3}`};
       requestReg(data);
     }
