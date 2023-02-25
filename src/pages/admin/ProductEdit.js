@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Axios } from "../../utils/CustomAxios";
+import { Axios, formDataAxios } from "../../utils/CustomAxios";
 import AdminMenu from "./AdminMenu";
 
 const ProductEdit = () =>{
@@ -12,19 +12,18 @@ const ProductEdit = () =>{
                 return res.data;
             })
             .then((data)=>{ 
+                if(data.itemStatus==="SOLD_OUT")setStatus(0);
                 setName(data.itemName);
                 setPrice(data.price);
                 setDetail(data.itemDetail);
                 setStock(data.stockNumber);
-                setStatus(data.status);
-                setImage(data.imageUrl);
             }) 
     },[])
     const [name,setName] = useState("");
     const [price,setPrice] = useState();
     const [detail,setDetail] = useState("");
     const [stock, setStock] = useState();
-    const [status,setStatus] = useState("FOR_SALE");
+    const [status,setStatus] = useState(1);
     const [image,setImage] = useState();
     const navigate = useNavigate();
 
@@ -45,33 +44,29 @@ const ProductEdit = () =>{
             alert("상품 정보를 정확하게 입력하세요");
             return;
         }
-        const uri = `/product/${id}`;
+        const uri = "/api/v1/admin/update";
         const data = {
+            "id":id,
             "itemName": name,
-            "itemStatus": status,
             "itemDetail":detail,
+            "itemStatus":status,
             "price": price,
             "stockNumber": stock,
-            "imageUrl":image
         }
-        await Axios.put(uri,data)
+        console.log(data);
+        const formData = new FormData();
+        formData.append('dto',new Blob([JSON.stringify(data)], {
+            type: "application/json"
+        }));
+        formData.append('file',image);
+        await formDataAxios.put(uri,formData)
         .then(()=>
-            {navigate("/admin/product");}
+            {navigate("/admin/product/1");}
         )
-        .catch();
-        
+        .catch(); 
     }
     const onImageHandler = (event) => {
-        let formData = new FormData();
-        console.log(event.target);
-        formData.append("file",event.target.files[0]);
-        for (var key of formData.keys()) {
-            console.log(key);
-          } 
-          for (var value of formData.values()) {
-            console.log(value);
-          }
-        setImage(formData);   
+        setImage(event.target.files[0]);   
     }
     return (
         <>
@@ -100,12 +95,11 @@ const ProductEdit = () =>{
                             <td>상품 상태</td>
                             <td>
                                 <select value={status} onChange={(e)=>setStatus(e.target.value)}>
-                                    <option value="FOR_SALE">판매 중</option>
-                                    <option value="품절">품절</option>
+                                    <option value={1}>판매 중</option>
+                                    <option value={0}>품절</option>
                                 </select>
                             </td>
-                        </tr>
-                        
+                        </tr>      
                         <tr>
                             <td>상품 이미지</td>
                             <td><input  onChange={onImageHandler} type="file"/></td>
