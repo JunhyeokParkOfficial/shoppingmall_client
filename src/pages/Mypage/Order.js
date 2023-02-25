@@ -20,7 +20,6 @@ const Order = ({data,getData}) => {
             .then(()=>{
                 window.location.reload();
                 getData();
-                console.log("getdata!!");
             });
             
         }

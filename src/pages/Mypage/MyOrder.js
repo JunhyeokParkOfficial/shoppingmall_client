@@ -13,7 +13,7 @@ const MyOrder = () =>{
     const getData = () =>{
         const uri = `/api/v1/member/order?page=${id-1}`;
         Axios.get(uri)
-        .then((res)=>{setData(res.data.content);setLoading(true);console.log(res)})
+        .then((res)=>{setData(res.data.content);setLoading(true);})
         .catch((e)=>console.log(e));
     }
 

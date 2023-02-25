@@ -6,8 +6,7 @@ const CartItem = ({data,getData,checkedItemHandler}) => {
     const [count,setCount] = useState(data.count);
 
     useEffect(()=>{
-        console.log(data);
-        const uri = `/api/v1/cartItem?itemId=${data.cartItemsId}&count=${count}`;
+        const uri = `/api/v1/cartItem?cartItemsId=${data.cartItemsId}&count=${count}`;
         Axios.put(uri);
     },[count,data])
 
@@ -22,7 +21,7 @@ const CartItem = ({data,getData,checkedItemHandler}) => {
         setCount(count+1);
     }
     const onDeleteClick = () => {
-        const uri = `/api/v1/cartItem?itemId=${data.cartItemsId}`;
+        const uri = `/api/v1/cartItem?cartItemId=${data.cartItemsId}`;
         Axios.delete(uri);
         getData();
     }

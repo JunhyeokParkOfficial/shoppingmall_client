@@ -26,7 +26,6 @@ const Login = () =>{
         const data = {email:ID,password:PW};;
         Axios.post("/api/v1/auth/login",data)
         .then((res)=>{
-            console.log(res.data);
             dispatch(login_success(res.data));
             localStorage.setItem("accessToken",res.data.accessToken);
             localStorage.setItem("refreshToken",res.data.refreshToken);
@@ -40,7 +39,7 @@ const Login = () =>{
             }
         })
         .catch((err)=>{
-            alert("로그인에 실패했습니다");
+            alert("비밀번호가 일치하지 않습니다");
             console.log(err);    
         })    
     }

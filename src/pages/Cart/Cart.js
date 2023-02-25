@@ -12,7 +12,7 @@ const Cart = () =>{
     const getData = () =>{
         const uri = `/api/v1/cart?page=${id-1}`;
         Axios.get(uri)
-        .then((res)=>{setData(res.data.content);console.log(res)});
+        .then((res)=>{setData(res.data.content);});
     }
     useEffect(()=>{
         getData();
@@ -22,7 +22,6 @@ const Cart = () =>{
         const uri = "/api/v1/cartItem/orders";
         let temp = [];
         list.forEach((product)=>{temp=[...temp,{cartItemId:product}]});
-        console.log(temp);
         Axios.post(uri,temp)
         .then(()=>{
             alert("주문이 완료되었습니다");

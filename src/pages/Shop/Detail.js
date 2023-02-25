@@ -13,7 +13,7 @@ const Detail = () => {
     const getProduct =() =>{
         const uri = `/api/v1/item/detail?id=${id}`;
         Axios.get(uri)
-        .then((res)=>{setData(res.data);console.log(res.data)});
+        .then((res)=>{setData(res.data);});
     }
     useEffect(()=>{
         getProduct();
@@ -32,11 +32,13 @@ const Detail = () => {
         if(!user.isLoggedIn){
             navigate("/login");
         }
-        const postdata = {"itemId":id,"count":count};
-        const uri = "/api/v1/cart"
-        Axios.post(uri,postdata);
-        document.querySelector(".popup_container_hidden").classList.add("popup_container");
-        document.querySelector(".popup_container").classList.remove("popup_container_hidden");
+        else {
+            const postdata = {"itemId":id,"count":count};
+            const uri = "/api/v1/cart"
+            Axios.post(uri,postdata);
+            document.querySelector(".popup_container_hidden").classList.add("popup_container");
+            document.querySelector(".popup_container").classList.remove("popup_container_hidden");
+        }
     }
     const onXbtnClick = () => {
         document.querySelector(".popup_container").classList.add("popup_container_hidden");
@@ -44,16 +46,21 @@ const Detail = () => {
     }
 
     const onOrderClick = () => {
-        let res = window.confirm("정말로 상품을 구매하시겠습니까?");
-        if(res){
-            const uri = "api/v1/order/do";
-            let postdata = {itemId:data.id,count:count};
-            Axios.post(uri,postdata)
-            .then(navigate("/mypage/order"))
-            .catch((err)=>{
-                alert("주문할 수 없습니다");
-                console.log(err.response);
-            })
+        if(!user.isLoggedIn){
+            navigate("/login");
+        }
+        else {
+            let res = window.confirm("상품을 구매하시겠습니까?");
+            if(res){
+                const uri = "/api/v1/order/do";
+                let postdata = {itemId:data.id,count:count};
+                Axios.post(uri,postdata)
+                .then(navigate("/mypage/order/1"))
+                .catch((err)=>{
+                    alert("주문할 수 없습니다");
+                    console.log(err.response);
+                })
+            }
         }
     }
     return (
