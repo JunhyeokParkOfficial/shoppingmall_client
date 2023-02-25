@@ -14,7 +14,7 @@ const AdminOrder = ({data,getData,checkedItemHandler}) => {
     const onConfirmClick = () => {
         let del = window.confirm("입금이 확인되었습니까?");
         if(del){
-            const uri = `/api/v1/admin/orders?id=${data.id}&status=2`;
+            const uri = `/api/v1/admin/orders?orderId=${data.orderId}&status=2`;
             Axios.put(uri)
             .then(()=>{
                 alert("입금확인 처리되었습니다");
@@ -25,7 +25,7 @@ const AdminOrder = ({data,getData,checkedItemHandler}) => {
     const onWaitClick = () =>{
         let del = window.confirm("입금대기 상태로 변경하시겠습니까?");
         if(del){
-            const uri = `/api/v1/admin/orders?id=${data.id}&status=1`;
+            const uri = `/api/v1/admin/orders?orderId=${data.orderId}&status=1`;
             Axios.put(uri)
             .then(()=>{
                 alert("입금대기 처리되었습니다");
@@ -36,7 +36,7 @@ const AdminOrder = ({data,getData,checkedItemHandler}) => {
     const onCancelClick = () => {
         let del = window.confirm("주문을 취소하시겠습니까?");
         if(del){
-            const uri = `/api/v1/admin/orders?id=${data.id}&status=0`;
+            const uri = `/api/v1/admin/orders?orderId=${data.orderId}&status=0`;
             Axios.put(uri)
             .then(()=>{
                 alert("주문취소 처리되었습니다");
