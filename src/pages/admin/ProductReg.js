@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Axios } from "../../utils/CustomAxios";
+import { Axios, formDataAxios } from "../../utils/CustomAxios";
 import AdminMenu from "./AdminMenu";
 
 const ProductReg = () =>{
@@ -8,7 +8,6 @@ const ProductReg = () =>{
     const [price,setPrice] = useState();
     const [detail,setDetail] = useState("");
     const [stock, setStock] = useState();
-    const [status,setStatus] = useState("판매 중");
     const [image,setImage] = useState();
     const navigate = useNavigate();
 
@@ -23,15 +22,7 @@ const ProductReg = () =>{
         else return false;
     }
     const onImageHandler = (event) => {
-        let formData = new FormData();
-        formData.append("file",event.target.files[0]);
-        for (var key of formData.keys()) {
-            console.log(key);
-          } 
-          for (var value of formData.values()) {
-            console.log(value);
-          }
-        setImage(formData);   
+        setImage(event.target.files[0]);   
     }
     //등록버튼 클릭
     const onRegClick = async () => {
@@ -43,18 +34,21 @@ const ProductReg = () =>{
         const uri = "/api/v1/admin/register";
         const data = {
             "itemName": name,
-            "itemStatus": status,
             "itemDetail":detail,
             "price": price,
             "stockNumber": stock,
-            "imageUrl":image
         }
-        await Axios.post(uri,data)
+        const formData = new FormData();
+        formData.append('dto',new Blob([JSON.stringify(data)], {
+            type: "application/json"
+        }));
+        formData.append('file',image);
+       
+        await formDataAxios.post(uri,formData)
         .then(()=>
             {navigate("/admin/product/1");}
         )
-        .catch();
-        
+        .catch(); 
     }
     return (
         <>
@@ -78,15 +72,6 @@ const ProductReg = () =>{
                         <tr>
                             <td>수량</td>
                             <td><input onChange={(e)=>setStock(e.target.value)} type="text"/></td>
-                        </tr>
-                        <tr>
-                            <td>상품 상태</td>
-                            <td>
-                                <select onChange={(e)=>setStatus(e.target.value)}>
-                                    <option value="FOR_SALE">판매 중</option>
-                                    <option value="품절">품절</option>
-                                </select>
-                            </td>
                         </tr>
                         <tr>
                             <td>상품 이미지</td>
