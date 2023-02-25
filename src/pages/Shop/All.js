@@ -41,7 +41,7 @@ const All = () =>{
                                 <li>
                                 <a className="product_list_a"href={detailurl}>
                                     <div>
-                                    <img style={{width:"100%"}} src={data.imageUrl}/>
+                                    <img style={{width:"330px", height:"330px"}} src={data.imageUrl}/>
                                     </div>
                                     <div>
                                         <div style={{float:"left"}}>{data.itemName}</div>
