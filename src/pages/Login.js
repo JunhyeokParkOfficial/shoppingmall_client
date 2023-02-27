@@ -66,6 +66,9 @@ const Login = () =>{
                                     </li>
                                 </ul>
                                 <div className='btn_register'><a href='/register'>회원가입</a></div>
+                                <div className='login_reset'>
+                                    <div>비밀번호를 잊으셨나요?</div><a href='/reset'>비밀번호 재설정하기</a>
+                                </div>
                             </fieldset>
                         </div>
                     </div>
