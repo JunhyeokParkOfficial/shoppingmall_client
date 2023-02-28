@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/*"
+  to = "https://uou-mall.netlify.app/:splat"
+  status = 200
+  force = true
