@@ -1,10 +1,4 @@
 [[redirects]]
-  from = "http://localhost:8080/*"
-  to = "https://uou-mall.netlify.app"
-  status = 200
-  force = true
-
-[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
