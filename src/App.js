@@ -1,61 +1,48 @@
-import { useEffect, useState } from 'react';
 import {BrowserRouter as Router, Route,Routes} from 'react-router-dom';
-import Header from './Header';
-import All from './routes/Shop/All';
-import Cart from './routes/Cart';
-import Dashboard from './routes/admin/Dashboard';
-import HeaderAdmin from './HeaderAdmin';
-import Home from './routes/Home';
-import Login from './routes/Login';
-import Register from './routes/Register';
-import Order from './routes/admin/Order';
-import ProductReg from './routes/admin/ProductReg';
-import AdminProducts from './routes/admin/AdminProducts';
-import Info from './routes/Mypage/Info';
-import MypageMain from './routes/Mypage/MypageMain';
-import Shop1 from './routes/Shop/Shop1';
-import Shop2 from './routes/Shop/Shop2';
-import Shop3 from './routes/Shop/Shop3';
+import Header from './pages/Header/Header';
+import All from './pages/Shop/All';
+import Cart from './pages/Cart/Cart';
+import Dashboard from './pages/admin/Dashboard';
+import HeaderAdmin from './pages/Header/HeaderAdmin';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ProductReg from './pages/admin/ProductReg';
+import Info from './pages/Mypage/Info';
+import MypageMain from './pages/Mypage/MypageMain';
+import './styles/App.css';
+import { useSelector } from 'react-redux';
+import Detail from './pages/Shop/Detail';
+import ProductEdit from './pages/admin/ProductEdit';
+import AdminManage from './pages/admin/AdminManage';
+import MyOrder from './pages/Mypage/MyOrder';
+import OrderManage from './pages/admin/OrderManage';
+import Reset from './pages/Reset';
 
 function App() {
-  const [login,setLogin] = useState(false);
-  const [admin,setAdmin] = useState(false);
-  const [Email,setEmail] = useState("");
-  useEffect(()=>{
-    if(localStorage.getItem("admin")==="true"){
-      setAdmin(true);
-      console.log(admin);
-    }
-    const savedUsername = localStorage.getItem("username");
-    if(savedUsername===null){
-      setLogin(false);
-    }
-    else {
-      setLogin(true);
-      setEmail(savedUsername);
-    }
-  },[]);
-  return (  
+  const user = useSelector(state=>state.user);
+  return ( 
     <Router>
-      {admin?<HeaderAdmin/>:<Header login={login} setLogin={setLogin}/>}
+      {user.info.role==="ROLE_ADMIN"?<HeaderAdmin/>:<Header/>}
       <Routes>
-        {admin?<>
-          <Route path="/admin/dashboard" element={<Dashboard/>}></Route>
+        {user.info.role==="ROLE_ADMIN"?<>
+          <Route path="/admin/" element={<Dashboard/>}></Route>
+          <Route path="/admin/product/:id" element={<AdminManage/>}></Route>
           <Route path="/admin/product/register" element={<ProductReg/>}></Route>
-          <Route path="/admin/product" element={<AdminProducts/>}></Route>
-          <Route path="/admin/order" element={<Order/>}></Route>
+          <Route path="/admin/order/:id" element={<OrderManage/>}></Route>
+          <Route path="/admin/product/edit/:id" element={<ProductEdit/>}></Route>
         </>
         :<>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/category/0" element={<All />}></Route>
-          <Route path="/category/1" element={<Shop1/>}></Route>
-          <Route path="/category/2" element={<Shop2/>}></Route>
-          <Route path="/category/3" element={<Shop3/>}></Route>
-          <Route path="/login" element={<Login setLogin={setLogin} setAdmin={setAdmin} setEmail={setEmail}/>}></Route>
+          <Route path="/reset" element={<Reset/>}></Route>
+          <Route path="/category/0/:id" element={<All />}></Route>
+          <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register/>}></Route>
           <Route path="/mypage" element={<MypageMain/>}></Route>
           <Route path="/mypage/information" element={<Info />}></Route>
-          <Route path="/cart" element={<Cart login={login}/>}></Route>
+          <Route path="/mypage/order/:id" element={<MyOrder/>}></Route>
+          <Route path="/cart/:id" element={<Cart/>}></Route>
+          <Route path="/detail/:id" element={<Detail/>}></Route>
         </>}
       </Routes>
     </Router>
