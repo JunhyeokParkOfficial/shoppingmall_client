@@ -20,11 +20,9 @@ import OrderManage from './pages/admin/OrderManage';
 import Reset from './pages/Reset';
 
 function App() {
-  // 유저 상태 가져옴
   const user = useSelector(state=>state.user);
   return ( 
     <Router>
-      {/* 사용자 롤에 따른 헤더 및 페이지 */}
       {user.info.role==="ROLE_ADMIN"?<HeaderAdmin/>:<Header/>}
       <Routes>
         {user.info.role==="ROLE_ADMIN"?<>

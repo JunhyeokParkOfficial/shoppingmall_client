@@ -14,7 +14,6 @@ const Register = () =>{
 
   const navigate = useNavigate();
   
-  //이메일 형식 확인 후 경고문 표시
   const onEmailBlur = (event) => {
     const RegExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     if(RegExp.test(event.target.value)){
@@ -27,14 +26,12 @@ const Register = () =>{
     }
   }
 
-  // 이메일 형식 체크
   const EmailCheck = () => {
     const RegExp = /^[A-Za-z0-9]([-_.]?[A-Za-z0-9])*@[A-Za-z0-9]([-_.]?[A-Za-z0-9])*\.[A-Za-z]{2,3}$/;
     if(RegExp.test(Email)) return true;
     else return false;
   }
   
-  //비밀번호 형식 체크
   const PWCheck = () => {
     let RegExp1 = /(?=.*?[a-z])(?=.*?[A-Z])/;
     let RegExp2 = /(?=.*?[0-9])(?=.*?[#?!@$%^&*-])/;
@@ -43,7 +40,6 @@ const Register = () =>{
     else return false;
   }
 
-  //비밀번호 일치 여부 확인 후 경고문 표시
   const onPW2Blur = (event) => {
     setPW2(event.target.value);
     if(event.target.value!==PW){
@@ -54,14 +50,12 @@ const Register = () =>{
     }
   }
   
-  //이름 형식 체크
   const nameCheck = () => {
     const RegExp = /^[가-희]{1,100}$/;
     if(RegExp.test(name))return true;
     else return false;
   }
 
-  //전화번호 형식 체크
   const PNCheck = () =>{
     if(PN1===""&&PN2===""&&PN3===""){
       return true;
@@ -75,7 +69,6 @@ const Register = () =>{
     else return false
   }
 
-  //주소
   const addressCheck = () =>{
     if(address==="")return true;
     const RegExp = /^[가-희]{1,}$/;
@@ -83,7 +76,6 @@ const Register = () =>{
     else return false;
   }
 
-  //입력된 정보  POST
   const requestReg = (data) =>{
     const uri = "/api/v1/auth/join";
     Axios.post(uri, data).then(response => response.data)
@@ -96,14 +88,13 @@ const Register = () =>{
       alert("회원가입할 수 없습니다");
     });
   }
-  //회원가입 클릭
+
   const onRegClick = () => {
     if(!EmailCheck())alert("이메일을 확인해주십시오");
     if(!PWCheck())alert("비밀번호를 확인해주십시오");
     if(PW!==PW2)alert("비밀번호가 일치하지 않습니다");
     if(!nameCheck())alert("이름을 확인해주십시오");
     if(!PNCheck())alert("휴대전화번호를 확인해주십시오");
-    //if(!addressCheck())alert("주소를 확인해주십시오");
     if(EmailCheck()&&PWCheck()&&(PW===PW2)&&nameCheck()&&PNCheck){
       const data = {address:address,email:Email,name:name,password:PW,phone:`${PN1}-${PN2}-${PN3}`};
       requestReg(data);

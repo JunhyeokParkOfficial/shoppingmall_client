@@ -24,7 +24,6 @@ const ProductReg = () =>{
     const onImageHandler = (event) => {
         setImage(event.target.files[0]);   
     }
-    //등록버튼 클릭
     const onRegClick = async () => {
         if(!name||!detail||!price||!stock||!stockCheck()||!priceCheck()){
             alert("상품 정보를 정확하게 입력하세요");

@@ -15,9 +15,7 @@ const Info = () => {
     const [c,setC] = useState("");
     
     const navigate = useNavigate();
-    const user = useSelector(state=>state.user);
 
-    //개인정보 GET
     const getInfo =async() =>{
         const uri = "/api/v1/member/me";
         await Axios.get(uri)
@@ -45,7 +43,6 @@ const Info = () => {
     },[])
 
 
-    //전화번호 형식 체크
     const PNCheck = () =>{
         if(a.length===0&&b.length===0&&c.length===0){
             return true;
@@ -59,14 +56,12 @@ const Info = () => {
         else return false
     }
 
-    //비밀번호 형식 체크
     const PWCheck = () => {
         let RegExp =  /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{10,}$/;
         if(RegExp.test(newPW1))return true;
         else return false;
-      }
+    }
     
-    //저장버튼 클릭
     const saveClick = () => {
         if(!PNCheck())alert("휴대전화 번호를 정확하게 입력하세요");
         else if(!PWCheck()||(newPW1!==newPW2))alert("비밀번호를 정확하게 입력하세요");

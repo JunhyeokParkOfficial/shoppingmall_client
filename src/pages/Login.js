@@ -13,9 +13,7 @@ const Login = () =>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
     
-    //로그인 버튼 클릭했을 때
     const loginBtnClick = () =>{
-        //알림 출력
         if(!ID){
             alert("아이디를 입력하십시오");
             return;
@@ -25,7 +23,6 @@ const Login = () =>{
             return;
         }
         
-        //아이디 및 비밀번호 POST
         const data = {email:ID,password:PW};;
         Axios.post("/api/v1/auth/login",data)
         .then((res)=>{
@@ -35,7 +32,6 @@ const Login = () =>{
             date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
             setCookie("refreshToken",res.data.refreshToken,{expires: date});
             if(res.data.authority[0].authorityStatus==="ROLE_ADMIN"){
-                console.log("관리자");
                 alert("관리자계정으로 로그인합니다");
                 navigate("/admin");
             }

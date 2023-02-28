@@ -4,7 +4,7 @@ import { Axios } from "../../utils/CustomAxios";
 const AdminProduct = ({product,getProduct}) =>{
     const uri = `/api/v1/admin/delete?id=${product.id}`
     const navigate = useNavigate();
-    //삭제버튼 클릭
+
     const deleteClick = async(event)=>{
       await Axios.delete(uri);
       getProduct();

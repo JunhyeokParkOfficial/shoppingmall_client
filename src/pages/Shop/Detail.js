@@ -9,7 +9,7 @@ const Detail = () => {
     const {id} = useParams();
     const [data,setData] = useState([]);
     const [count,setCount] = useState(1);
-    //상품데이터 GET
+    
     const getProduct =() =>{
         const uri = `/api/v1/item/detail?id=${id}`;
         Axios.get(uri)

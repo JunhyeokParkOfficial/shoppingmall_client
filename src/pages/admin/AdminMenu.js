@@ -1,12 +1,6 @@
 import { Link } from "react-router-dom"
 
 const AdminMenu = ({menu}) => {
-   /* if(menu==="상품관리"){
-        const target = document.querySelector(".product_manage");
-    console.log(target);
-    }
-    */  
-   
     return (
             <div className='admin_category_list'>
                     <h2 className='category_title'>관리자 메뉴</h2>

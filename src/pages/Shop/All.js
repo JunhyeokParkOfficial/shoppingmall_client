@@ -11,7 +11,6 @@ const All = () =>{
         getProduct();
     },[])
     
-    //상품데이터 GET
     const getProduct =async() =>{
         const uri = `/api/v1/item?page=${id-1}`;
         await Axios.get(uri)

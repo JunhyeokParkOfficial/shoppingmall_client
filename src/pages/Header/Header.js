@@ -8,7 +8,6 @@ const Header = () => {
     const user = useSelector(state=>state.user);
     const [cookies, setCookie, removeCookie] = useCookies();
 
-    //로그아웃 클릭
     const logoutClick = () =>{
         dispatch(remove_userInfo());
         localStorage.removeItem("accessToken");

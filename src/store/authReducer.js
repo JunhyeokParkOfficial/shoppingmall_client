@@ -6,7 +6,6 @@ const initUser = {
   role: "",
 };
 
-//초기 상태
 const initialState = {
   isLoggedIn: false,
   info: initUser,

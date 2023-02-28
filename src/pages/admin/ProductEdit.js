@@ -38,7 +38,6 @@ const ProductEdit = () =>{
         else return false;
     }
 
-    //등록버튼 클릭
     const onEditClick = async () => {
         if(!name||!detail||!price||!stock||!stockCheck()||!priceCheck()){
             alert("상품 정보를 정확하게 입력하세요");
@@ -53,7 +52,6 @@ const ProductEdit = () =>{
             "price": price,
             "stockNumber": stock,
         }
-        console.log(data);
         const formData = new FormData();
         formData.append('dto',new Blob([JSON.stringify(data)], {
             type: "application/json"
