@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "/api/*"
+  from = "http://localhost:8080/*"
   to = "https://uou-mall.netlify.app"
   status = 200
   force = true
