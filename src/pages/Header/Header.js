@@ -28,7 +28,7 @@ const Header = () => {
                                 <p>
                                     <Link to="/category/0/1">SHOP</Link>
                                 </p>
-                                <ul className="sub sub1">
+                                {/*<ul className="sub sub1">
                                     <div className="inner">
                                         <ul>
                                             <p>
@@ -36,7 +36,7 @@ const Header = () => {
                                             </p>
                                         </ul>
                                     </div>
-                                </ul>
+                                </ul>*/}
                             </li>
                         </ul>
                     </div>
