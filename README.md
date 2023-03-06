@@ -7,7 +7,7 @@ https://uou-mall.netlify.app/
 따라서, IT융합학부 학우들만의 장터를 만들고자 기획한 프로젝트입니다.
 
 
-## 기술스택
+## 기술 스택
 <div>
 <row>
 백엔드 : 
@@ -25,3 +25,12 @@ https://uou-mall.netlify.app/
 <img src="https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/>
 </row>
 </div>
+
+## 기능
+- 회원가입 및 JWT 기반 인증
+- 관리자 페이지(상품 및 주문 관리)
+- 상품 페이지
+- 장바구니
+- 개인정보 변경
+- 주문내역
+
