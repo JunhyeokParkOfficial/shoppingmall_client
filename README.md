@@ -36,5 +36,8 @@ https://uou-mall.netlify.app/
 
 ## Demo
 
+### 메인 화면
+![image](https://user-images.githubusercontent.com/111430281/223153232-200192d6-6381-4fb5-ba76-ee75e0bfcd2c.jpg)
+
 ### 회원가입
 ![image](https://user-images.githubusercontent.com/111430281/223152589-c7c834fc-946e-430f-8552-d1060d3dc744.jpg)
