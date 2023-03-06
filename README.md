@@ -44,3 +44,7 @@ https://uou-mall.netlify.app/
 
 ### 로그인
 ![image](https://user-images.githubusercontent.com/111430281/223153849-4d851324-3841-4e43-a0c4-edc4dd2f745c.jpg)
+
+### 비밀번호 재설정
+![image](https://user-images.githubusercontent.com/111430281/223154541-419a16be-9779-491c-8a54-f4cb918c5e34.jpg)
+
