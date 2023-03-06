@@ -7,7 +7,7 @@ https://uou-mall.netlify.app/
 따라서, IT융합학부 학우들만의 장터를 만들고자 기획한 프로젝트입니다.
 
 
-## 기술 스택
+## Tech Stacks
 <div>
 <row>
 백엔드 : 
@@ -26,7 +26,7 @@ https://uou-mall.netlify.app/
 </row>
 </div>
 
-## 기능
+## Features
 - 회원가입 및 JWT 기반 인증
 - 관리자 페이지(상품 및 주문 관리)
 - 상품 페이지
@@ -34,3 +34,4 @@ https://uou-mall.netlify.app/
 - 개인정보 변경
 - 주문내역
 
+## Demo
