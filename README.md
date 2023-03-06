@@ -35,5 +35,6 @@ https://uou-mall.netlify.app/
 - 주문내역
 
 ## Demo
-## 회원가입 화면
+
+### 회원가입
 ![image](https://user-images.githubusercontent.com/111430281/223152589-c7c834fc-946e-430f-8552-d1060d3dc744.jpg)
