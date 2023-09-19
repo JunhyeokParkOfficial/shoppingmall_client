@@ -1,4 +1,5 @@
 # Gaonnuri_BookShoppingMall_Client
+https://uou-mall.netlify.app/
 ## :information_desk_person:개요
 코로나 팬데믹으로인한 비대면 수업으로인해 자연스럽게 학우들간의 소통뿐만 아니라 선후배간의 소통이 줄게 되고 이전의 수업 책이나 전공 자료등을 후배와 동급생들과 주고받을 수 있는 기회가 줄어들었습니다.
 
