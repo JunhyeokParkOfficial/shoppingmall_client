@@ -63,7 +63,7 @@ const Header = () => {
                     </div>
                 </div>  
                 <div id='header-bottom'>
-                    <div id='category-box' onMouseOver={handleMouseOver}>
+                    <div id='category-box' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
                         <button>
                             <img src={categoryIcon} />
                             카테고리
@@ -72,16 +72,16 @@ const Header = () => {
                             (<div id='dropdown-menu-box'>
                                 <ul>
                                     <li className='category-item-box'>
-                                        <a href='/product?category=clothing'>의류</a>
+                                        <a href='/product?category=clothing'>카테고리1</a>
                                     </li>
                                     <li className='category-item-box'>
-                                        <a >의류</a>
+                                        <a>카테고리2</a>
                                     </li>
                                     <li className='category-item-box'>
-                                        <a >의류</a>
+                                        <a>카테고리2</a>
                                     </li>
                                     <li className='category-item-box'>
-                                        <a >의류</a>
+                                        <a >카테고리2</a>
                                     </li>
                                 </ul>
                             </div>)
