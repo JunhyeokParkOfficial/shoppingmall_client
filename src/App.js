@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Route,Routes} from 'react-router-dom';
 import Header from './pages/Header/Header';
-import All from './pages/Shop/All';
+import Products from './pages/Shop/Products';
 import Cart from './pages/Cart/Cart';
 import Dashboard from './pages/admin/Dashboard';
 import HeaderAdmin from './pages/Header/HeaderAdmin';
@@ -35,14 +35,14 @@ function App() {
         :<>
           <Route path="/" element={<Home />}></Route>
           <Route path="/reset" element={<Reset/>}></Route>
-          <Route path="/category/0/:id" element={<All />}></Route>
+          <Route path="/product" element={<Products />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register/>}></Route>
           <Route path="/mypage" element={<MypageMain/>}></Route>
           <Route path="/mypage/information" element={<Info />}></Route>
           <Route path="/mypage/order/:id" element={<MyOrder/>}></Route>
           <Route path="/cart/:id" element={<Cart/>}></Route>
-          <Route path="/detail/:id" element={<Detail/>}></Route>
+          <Route path="/product/:id" element={<Detail/>}></Route>
         </>}
       </Routes>
     </Router>
