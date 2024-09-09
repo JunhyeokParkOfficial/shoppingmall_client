@@ -490,80 +490,56 @@ ul{
 
 /* ------------------------------------------ showProduct ------------------------------------------ */
 .product_container{
-    margin-top: 50px;
-}
-
-.product_content{
     width: 1024px;
     margin: auto;
 }
 
-.category_list{
-    padding: 20px;
-    padding-bottom: 20px;
-    width: 200px;
-    float: left;
+.product_container #title-box{
     margin-top: 70px;
+    font-size: 35px;
+    text-align: center;
     margin-bottom: 50px;
-    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
-      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025),0 -6px 16px -6px rgba(0, 0, 0, 0.025);
 }
-
-.category_title{
-    margin: -6px 0 8px;
-    padding-bottom: 12px;
-    border-bottom: 4px solid #000;
-    font-size: 23px;
-    color: #000;
-    font-weight: 800;
-    line-height: 1.25;
-}
-
-.category_list ul li{
-    margin:12px 0;
-}
-
-.category_list ul li a{
-    text-decoration: none;
-    font-size: 16px;
-    line-height: 28px;
-    color: #5d5d5d;
-    text-align: left;
-}
-
-.category_list ul li:hover a{
-    font-size: 18px;
-    font-weight: 1000;
-    color: #000;
-}
-
-#selected{
-    font-size: 18px;
-    font-weight: 1000;
-    color: #000;
-}
-
 
 .product_ul{
     display: flex;
     flex-wrap: wrap;
+    list-style: none;
 }
 
-.product_list .product_ul li{
-    width: 30%;
-    margin-left: 20px;
+.product_list li{
+    margin-left: 18px;
+    margin-right: 18px;
     margin-bottom: 40px;
 }
 
-
-.product_list .product_ul li a{
-    width: 100%;
+.product_list li a{
+    text-decoration-line: none;
 }
 
-.product_list_a{
-    text-decoration: none;
+.product_list li img{
+    width: 220px;
+    height: 220px;
+}
+
+.product_list li .product-simple-info{
     color: black;
+    text-align: left;
 }
+
+.product-simple-info #simple-info-name{
+    font-size: 18px;
+    font-weight: 350;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.product-simple-info #simple-info-price{
+    font-size: 23px;
+    font-weight: 500;
+}
+
+
 
 /* ------------------------------------------ detail ------------------------------------------ */
 .detail_container{
