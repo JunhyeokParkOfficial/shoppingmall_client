@@ -34,6 +34,17 @@ const Header = () => {
         setIsHovering(false);
     };
 
+    const categoryText = {
+        book: '도서',
+        ticket: '티켓/문구',
+        clothing: '의류',
+        shoes: '신발',
+        accessary: '액세서리',
+        digital: '디지털',
+        food: '식품',
+        beauty: '뷰티/미용'
+    };
+
     return (
         <div id="header-container">
             <div id="header">
@@ -71,18 +82,13 @@ const Header = () => {
                         {isHovering?
                             (<div id='dropdown-menu-box'>
                                 <ul>
-                                    <li className='category-item-box'>
-                                        <a href='/product?category=clothing'>카테고리1</a>
-                                    </li>
-                                    <li className='category-item-box'>
-                                        <a>카테고리2</a>
-                                    </li>
-                                    <li className='category-item-box'>
-                                        <a>카테고리2</a>
-                                    </li>
-                                    <li className='category-item-box'>
-                                        <a >카테고리2</a>
-                                    </li>
+                                    {Object.keys(categoryText).map((key)=>{
+                                        return (
+                                            <li className='category-item-box'>
+                                                <a href={`/product?category=${key}`}>{categoryText[key]}</a>
+                                            </li>
+                                        )
+                                    })}
                                 </ul>
                             </div>)
                             :(<></>)}
