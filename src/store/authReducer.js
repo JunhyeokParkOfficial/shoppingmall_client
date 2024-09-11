@@ -17,9 +17,7 @@ const authReducer = createSlice({
   reducers: {
     login_success: (state, action) => {
       state.isLoggedIn = true;
-      state.info.userId = action.payload.id;
-      state.info.userEmail = action.payload.email;
-      state.info.role = action.payload.authority[0].authorityStatus;
+      //state.info.role = action.payload.authority[0].authorityStatus;
     },
     remove_userInfo: (state) => {
       state.isLoggedIn = false;
