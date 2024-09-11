@@ -18,6 +18,7 @@ import AdminManage from './pages/admin/AdminManage';
 import MyOrder from './pages/Mypage/MyOrder';
 import OrderManage from './pages/admin/OrderManage';
 import Reset from './pages/Reset';
+import { PAGE_URL } from './constants/urls';
 
 function App() {
   const user = useSelector(state=>state.user);
@@ -26,23 +27,23 @@ function App() {
       {user.info.role==="ROLE_ADMIN"?<HeaderAdmin/>:<Header/>}
       <Routes>
         {user.info.role==="ROLE_ADMIN"?<>
-          <Route path="/admin/" element={<Dashboard/>}></Route>
-          <Route path="/admin/product/:id" element={<AdminManage/>}></Route>
-          <Route path="/admin/product/register" element={<ProductReg/>}></Route>
-          <Route path="/admin/order/:id" element={<OrderManage/>}></Route>
-          <Route path="/admin/product/edit/:id" element={<ProductEdit/>}></Route>
+          <Route path={PAGE_URL.ADMIN} element={<Dashboard/>}></Route>
+          <Route path={PAGE_URL.ADMIN_MANAGE} element={<AdminManage/>}></Route>
+          <Route path={PAGE_URL.PRODUCT_REG} element={<ProductReg/>}></Route>
+          <Route path={PAGE_URL.ORDER_MANAGE} element={<OrderManage/>}></Route>
+          <Route path={PAGE_URL.PRODUCT_EDIT} element={<ProductEdit/>}></Route>
         </>
         :<>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/reset" element={<Reset/>}></Route>
-          <Route path="/product" element={<Products />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/register" element={<Register/>}></Route>
-          <Route path="/mypage" element={<MypageMain/>}></Route>
-          <Route path="/mypage/information" element={<Info />}></Route>
-          <Route path="/mypage/order/:id" element={<MyOrder/>}></Route>
-          <Route path="/cart/:id" element={<Cart/>}></Route>
-          <Route path="/product/:id" element={<Detail/>}></Route>
+          <Route path={PAGE_URL.HOME} element={<Home />}></Route>
+          <Route path={PAGE_URL.RESET} element={<Reset/>}></Route>
+          <Route path={PAGE_URL.PRODUCT} element={<Products />}></Route>
+          <Route path={PAGE_URL.LOGIN} element={<Login />}></Route>
+          <Route path={PAGE_URL.REGISTER} element={<Register/>}></Route>
+          <Route path={PAGE_URL.MYPAGE} element={<MypageMain/>}></Route>
+          <Route path={PAGE_URL.INFO} element={<Info />}></Route>
+          <Route path={PAGE_URL.MY_ORDER} element={<MyOrder/>}></Route>
+          <Route path={PAGE_URL.CART} element={<Cart/>}></Route>
+          <Route path={PAGE_URL.PRODUCT_DETAIL} element={<Detail/>}></Route>
         </>}
       </Routes>
     </Router>
