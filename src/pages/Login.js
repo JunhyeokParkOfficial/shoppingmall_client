@@ -1,13 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Axios } from '../utils/CustomAxios';
 import { useDispatch } from 'react-redux';
 import { login_success } from '../store/authReducer';
-import axios from 'axios';
-import { useCookies } from 'react-cookie';
-import { SetCookies } from '../store/cookie';
+import { requestLogin } from '../services';
 const Login = () =>{
-    const [cookies, setCookie, removeCookie] = useCookies();
     const [ID,setID] = useState("");
     const [PW,setPW] = useState("");
     const navigate = useNavigate();
@@ -24,25 +20,24 @@ const Login = () =>{
         }
         
         const data = {email:ID,password:PW};;
-        Axios.post("/api/v1/auth/login",data)
-        .then((res)=>{
-            dispatch(login_success(res.data));
-            localStorage.setItem("accessToken",res.data.accessToken);
-            let date = new Date();
-            date.setTime(date.getTime() + 24 * 60 * 60 * 1000);
-            setCookie("refreshToken",res.data.refreshToken,{expires: date});
-            if(res.data.authority[0].authorityStatus==="ROLE_ADMIN"){
-                alert("관리자계정으로 로그인합니다");
-                navigate("/admin");
-            }
-            else {
+        requestLogin(data)
+            .then((res)=>{
+                console.log(res);
+                dispatch(login_success(res));
+                localStorage.setItem("access_token",res.accessToken);
+                /*if(res.data.authority[0].authorityStatus==="ROLE_ADMIN"){
+                    alert("관리자계정으로 로그인합니다");
+                    navigate("/admin");
+                }
+                else {
+                    navigate("/");
+                }*/
                 navigate("/");
-            }
-        })
-        .catch((err)=>{
-            alert("비밀번호가 일치하지 않습니다");
-            console.log(err);    
-        })    
+            })
+            .catch((err)=>{
+                alert("비밀번호가 일치하지 않습니다");
+                console.log(err);    
+            })    
     }
     
     return (

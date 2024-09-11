@@ -1,25 +1,25 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Axios } from '../../utils/CustomAxios';
 import { remove_userInfo } from '../../store/authReducer';
-import { useCookies } from 'react-cookie';
 import { useState } from 'react';
 import categoryIcon from '../../assets/category.png'
 import logo from '../../assets/logo.png'
 import cartIcon from '../../assets/cart.png'
 import userIcon from '../../assets/user.png'
+import { requestLogout } from '../../services';
 const Header = () => {
     const dispatch = useDispatch();
     const user = useSelector(state=>state.user);
-    const [cookies, setCookie, removeCookie] = useCookies();
     const [isHovering, setIsHovering] = useState(false);
 
     const logout = () =>{
         dispatch(remove_userInfo());
-        localStorage.removeItem("accessToken");
-        removeCookie('refreshToken');
-        const uri="api/v1/member/logout";
-        Axios.get(uri);
+        requestLogout()
+            .then((res)=>{
+                console.log(res);
+                localStorage.removeItem("access_token");
+                //window.location.href="/";
+            })
     }
 
     const navigateToLogin = () => {

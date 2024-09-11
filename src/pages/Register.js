@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Axios } from '../utils/CustomAxios';
+import { requestCreateAccount } from '../services';
 
 const Register = () =>{
   const [PW,setPW] = useState("");
@@ -77,16 +77,15 @@ const Register = () =>{
   }
 
   const requestReg = (data) =>{
-    const uri = "/api/v1/auth/join";
-    Axios.post(uri, data).then(response => response.data)
-    .then((res) => {
-      alert("가입되었습니다");
-      navigate("/");
-    })
-    .catch((err)=>{
-      console.log(err.response);
-      alert("회원가입할 수 없습니다");
-    });
+    requestCreateAccount(data)
+      .then((res) => {
+        alert("가입되었습니다");
+        navigate("/");
+      })
+      .catch((err)=>{
+        console.log(err.response);
+        alert("회원가입할 수 없습니다");
+      });
   }
 
   const onRegClick = () => {
