@@ -22,7 +22,6 @@ const Login = () =>{
         const data = {email:ID,password:PW};;
         requestLogin(data)
             .then((res)=>{
-                console.log(res);
                 dispatch(login_success(res));
                 localStorage.setItem("access_token",res.accessToken);
                 /*if(res.data.authority[0].authorityStatus==="ROLE_ADMIN"){

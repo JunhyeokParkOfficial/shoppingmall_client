@@ -15,12 +15,14 @@ export const PAGE_URL = {
     INFO:"/mypage/information",
     MY_ORDER:"/mypage/order/:id",
     CART:"/cart/:id",
+    CART_PAGE: (id) => `/cart/${id}`,
     PRODUCT_DETAIL:"/product/:id",
   };
   
   export const API_URL = {  
     REGISTER: host+"/api/member",
     LOGIN: host+"/api/auth",
-    LOGOUT: host+"/api/auth"
+    LOGOUT: host+"/api/auth",
+    MY_INFO: host+"/api/member"
   };
   
