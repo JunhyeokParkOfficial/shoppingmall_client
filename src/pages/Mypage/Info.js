@@ -2,40 +2,24 @@ import MypageBar from "./MypageBar";
 import { useEffect, useState } from "react";
 import PhoneNumber from "./PhoneNumber";
 import { useNavigate } from "react-router-dom";
-import { Axios } from "../../utils/CustomAxios";
-import { useSelector } from "react-redux";
+import axios from "../../services/api";
+import { queryMyInfo } from "../../services";
+import { PAGE_URL } from "../../constants/urls";
 
 const Info = () => {
     const [data,setData] = useState([]);
-    const [loading,setLoading] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState("");
     const [newPW1,setNewPW1] = useState("");
     const [newPW2,setNewPW2] = useState("");
-    const [a,setA] = useState("");
-    const [b,setB] = useState("");
-    const [c,setC] = useState("");
     
     const navigate = useNavigate();
 
-    const getInfo =async() =>{
-        const uri = "/api/v1/member/me";
-        await Axios.get(uri)
-        .then((response)=>response.data)
-        .then((data)=>{
-            if(data.phone){
-                if(data.phone.length===13){
-                    setA(data.phone.substr(0,3));
-                    setB(data.phone.substr(4,4));
-                    setC(data.phone.substr(9,4));
-                }
-                else if(data.phone.length===12){
-                    setA(data.phone.substr(0,3));
-                    setB(data.phone.substr(4,3));
-                    setC(data.phone.substr(8,4));
-                }
-            }
-            setData(data);
-            setLoading(true);
-        })
+    const getInfo = async() =>{
+        queryMyInfo()
+            .then((data)=>{
+                setPhoneNumber(data.phone);
+                setData(data);
+            })
     }
 
     useEffect(()=>{
@@ -44,16 +28,8 @@ const Info = () => {
 
 
     const PNCheck = () =>{
-        if(a.length===0&&b.length===0&&c.length===0){
-            return true;
-        }
-        const RegExp1 = /^[0-9]{3}$/;
-        const RegExp2 = /^[0-9]{3,4}$/;
-        const RegExp3 = /^[0-9]{4}$/;
-        if(RegExp1.test(a)&&RegExp2.test(b)&&RegExp3.test(c)){
-          return true;
-        }
-        else return false
+        const RegExp = /^[0-9]{3}-[0-9]{3,4}-[0-9]{4}$/;
+        return true;
     }
 
     const PWCheck = () => {
@@ -67,24 +43,14 @@ const Info = () => {
         else if(!PWCheck()||(newPW1!==newPW2))alert("비밀번호를 정확하게 입력하세요");
         else if(PNCheck()&&PWCheck()&&(newPW1===newPW2)){
             let putData;
-            if(a.length===0){
-                putData = {
-                    "address": data.address,
-                    "email": data.email,
-                    "name": data.name,
-                    "password": newPW1,
-                }
-            }
-           else{
-                putData = {
-                    "address": data.address,
-                    "name": data.name,
-                    "password": newPW1,
-                    "phone":`${a}-${b}-${c}`,
-                }
+            putData = {
+                "address": data.address,
+                "email": data.email,
+                "name": data.name,
+                "password": newPW1,
             }
             const uri = "/api/v1/member/update";
-            Axios.put(uri,putData)
+            axios.put(uri,putData)
             .then(navigate("/mypage/order/1"))
             .catch((err)=>{
                 alert("정확한 정보를 입력하세요");
@@ -111,7 +77,7 @@ const Info = () => {
                             <tr>
                                     <th>휴대전화</th>
                                     <td>
-                                       {loading?(<PhoneNumber data={data} a={a} b={b} c={c} setA={setA} setB={setB} setC={setC}/>):(<></>)}
+                                       <PhoneNumber phoneNumber={phoneNumber} setPhoneNumber={setPhoneNumber}/>
                                     </td>
                             </tr>
                             <tr>

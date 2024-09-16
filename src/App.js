@@ -19,6 +19,7 @@ import MyOrder from './pages/Mypage/MyOrder';
 import OrderManage from './pages/admin/OrderManage';
 import Reset from './pages/Reset';
 import { PAGE_URL } from './constants/urls';
+import UserRoutes from './routes/UserRoutes';
 
 function App() {
   const user = useSelector(state=>state.user);
@@ -34,16 +35,18 @@ function App() {
           <Route path={PAGE_URL.PRODUCT_EDIT} element={<ProductEdit/>}></Route>
         </>
         :<>
-          <Route path={PAGE_URL.HOME} element={<Home />}></Route>
+        <Route path={PAGE_URL.HOME} element={<Home />}></Route>
+        <Route path={PAGE_URL.PRODUCT} element={<Products />}></Route>
+        <Route path={PAGE_URL.LOGIN} element={<Login />}></Route>
+        <Route path={PAGE_URL.REGISTER} element={<Register/>}></Route>
+        <Route path={PAGE_URL.PRODUCT_DETAIL} element={<Detail/>}></Route>
+        <Route element={<UserRoutes/>}>
           <Route path={PAGE_URL.RESET} element={<Reset/>}></Route>
-          <Route path={PAGE_URL.PRODUCT} element={<Products />}></Route>
-          <Route path={PAGE_URL.LOGIN} element={<Login />}></Route>
-          <Route path={PAGE_URL.REGISTER} element={<Register/>}></Route>
           <Route path={PAGE_URL.MYPAGE} element={<MypageMain/>}></Route>
           <Route path={PAGE_URL.INFO} element={<Info />}></Route>
           <Route path={PAGE_URL.MY_ORDER} element={<MyOrder/>}></Route>
           <Route path={PAGE_URL.CART} element={<Cart/>}></Route>
-          <Route path={PAGE_URL.PRODUCT_DETAIL} element={<Detail/>}></Route>
+        </Route>
         </>}
       </Routes>
     </Router>

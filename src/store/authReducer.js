@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initUser = {
   userId: -1, 
-  userEmail: "",
   role: "",
 };
 

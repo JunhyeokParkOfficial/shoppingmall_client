@@ -1,4 +1,22 @@
-const PhoneNumber = ({data,a,b,c,setA,setB,setC}) =>{
+import { useEffect, useState } from "react";
+
+const PhoneNumber = ({phoneNumber, setPhoneNumber}) =>{
+    const [first,setFirst] = useState([]);
+    const [second,setSecond] = useState([]);
+    const [third,setThird] = useState([]);
+
+    useEffect(()=>{
+        const parts = phoneNumber.split("-");
+        setFirst(parts[0]);
+        setSecond(parts[1]);
+        setThird(parts[2]);
+    },[phoneNumber])
+
+    const handleChange = () => {
+        const newPhoneNumber = `${first}-${second}-${third}`;
+        setPhoneNumber(newPhoneNumber);
+      };
+
     const styleObj1 = {
 		border: "1px solid #ddd",
         width: "7%",
@@ -9,11 +27,11 @@ const PhoneNumber = ({data,a,b,c,setA,setB,setC}) =>{
 
         return (
                 <div>
-                    <input onChange={(e)=>setA(e.target.value)} style={styleObj1} type="text" value={a}/>
+                    <input onChange={(e)=>setFirst(e.target.value)} onBlur={handleChange} style={styleObj1} type="text" value={first}/>
                     <> - </>
-                    <input onChange={(e)=>setB(e.target.value)} style={styleObj1} type="text" value={b}/>
+                    <input onChange={(e)=>setSecond(e.target.value)} onBlur={handleChange} style={styleObj1} type="text" value={second}/>
                     <> - </> 
-                    <input onChange={(e)=>setC(e.target.value)} style={styleObj1} type="text" value={c}/>
+                    <input onChange={(e)=>setThird(e.target.value)} onBlur={handleChange} style={styleObj1} type="text" value={third}/>
                 </div>
                 )
 }

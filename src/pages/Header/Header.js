@@ -7,6 +7,7 @@ import logo from '../../assets/logo.png'
 import cartIcon from '../../assets/cart.png'
 import userIcon from '../../assets/user.png'
 import { requestLogout } from '../../services';
+import { PAGE_URL } from '../../constants/urls';
 const Header = () => {
     const dispatch = useDispatch();
     const user = useSelector(state=>state.user);
@@ -18,12 +19,20 @@ const Header = () => {
             .then((res)=>{
                 console.log(res);
                 localStorage.removeItem("access_token");
-                //window.location.href="/";
+                window.location.reload();
             })
     }
 
     const navigateToLogin = () => {
-        window.location.href = "/login"
+        window.location.href = PAGE_URL.LOGIN;
+    }
+
+    const clickCart = () => {
+        window.location.href = PAGE_URL.CART_PAGE(1);
+    }
+
+    const clickMyPage = () => {
+        window.location.href = PAGE_URL.MYPAGE;
     }
 
     const handleMouseOver = () => {
@@ -57,18 +66,18 @@ const Header = () => {
                 </div>
                 <div id="header-mid">
                     <div id="logo-box">
-                        <Link to="/">
+                        <a href="/">
                             <img src={logo} style={{height:'50px'}}/>
-                        </Link>
+                        </a>
                     </div>
                     <div id='search-box'>
                         <input id='search-input' placeholder='검색어를 입력해 주세요.'></input>
                     </div>
                     <div id='button-box'>
-                        <a onClick={navigateToLogin}>
+                        <a onClick={clickCart}>
                             <img src={cartIcon} style={{marginRight:'7px'}}/>장바구니
                         </a>
-                        <a onClick={navigateToLogin} style={{marginRight:'5px'}}>
+                        <a onClick={clickMyPage} style={{marginRight:'5px'}}>
                             <img src={userIcon} style={{marginRight:'3px'}}/>마이페이지
                         </a>
                     </div>

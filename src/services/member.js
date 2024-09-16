@@ -6,3 +6,8 @@ export const requestCreateAccount = async (data) => {
   
     return response.data;
 };
+
+export const queryMyInfo = async () => {
+    const response = await axios.get(API_URL.MY_INFO);
+    return response.data;
+}
