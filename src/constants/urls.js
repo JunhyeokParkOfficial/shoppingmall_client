@@ -23,6 +23,7 @@ export const PAGE_URL = {
     REGISTER: host+"/api/member",
     LOGIN: host+"/api/auth",
     LOGOUT: host+"/api/auth",
-    MY_INFO: host+"/api/member"
+    MY_INFO: host+"/api/member",
+    REISSUE: host+"/api/auth/token"
   };
   

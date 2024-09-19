@@ -2,9 +2,9 @@ import MypageBar from "./MypageBar";
 import { useEffect, useState } from "react";
 import PhoneNumber from "./PhoneNumber";
 import { useNavigate } from "react-router-dom";
-import axios from "../../services/api";
 import { queryMyInfo } from "../../services";
 import { PAGE_URL } from "../../constants/urls";
+import { axiosInstance } from "../../services/axiosInstance";
 
 const Info = () => {
     const [data,setData] = useState([]);
@@ -49,13 +49,6 @@ const Info = () => {
                 "name": data.name,
                 "password": newPW1,
             }
-            const uri = "/api/v1/member/update";
-            axios.put(uri,putData)
-            .then(navigate("/mypage/order/1"))
-            .catch((err)=>{
-                alert("정확한 정보를 입력하세요");
-            })
-            
         }
     }
     return (
