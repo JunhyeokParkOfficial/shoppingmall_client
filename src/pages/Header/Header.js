@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { remove_userInfo } from '../../store/authReducer';
 import { useState } from 'react';
 import categoryIcon from '../../assets/category.png'
@@ -8,6 +7,8 @@ import cartIcon from '../../assets/cart.png'
 import userIcon from '../../assets/user.png'
 import { requestLogout } from '../../services';
 import { PAGE_URL } from '../../constants/urls';
+import { categories } from '../../constants/categories';
+
 const Header = () => {
     const dispatch = useDispatch();
     const user = useSelector(state=>state.user);
@@ -41,17 +42,6 @@ const Header = () => {
 
     const handleMouseOut = () => {
         setIsHovering(false);
-    };
-
-    const categoryText = {
-        book: '도서',
-        ticket: '티켓/문구',
-        clothing: '의류',
-        shoes: '신발',
-        accessary: '액세서리',
-        digital: '디지털',
-        food: '식품',
-        beauty: '뷰티/미용'
     };
 
     return (
@@ -91,10 +81,10 @@ const Header = () => {
                         {isHovering?
                             (<div id='dropdown-menu-box'>
                                 <ul>
-                                    {Object.keys(categoryText).map((key)=>{
+                                    {Object.keys(categories).map((key)=>{
                                         return (
                                             <li className='category-item-box'>
-                                                <a href={`/product?category=${key}`}>{categoryText[key]}</a>
+                                                <a href={`/product?category=${key}`}>{categories[key]}</a>
                                             </li>
                                         )
                                     })}
