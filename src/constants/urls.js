@@ -9,6 +9,7 @@ export const PAGE_URL = {
     HOME:"/",
     RESET:"/reset",
     PRODUCT:"/product",
+    PRODUCT_PAGENATION: (category, sort, currentPage) => `/product?category=${category}&sort=${sort}&page=${currentPage}`,
     LOGIN:"/login",
     REGISTER:"/register",
     MYPAGE:"/mypage",
@@ -24,6 +25,8 @@ export const PAGE_URL = {
     LOGIN: host+"/api/auth",
     LOGOUT: host+"/api/auth",
     MY_INFO: host+"/api/member",
-    REISSUE: host+"/api/auth/token"
+    REISSUE: host+"/api/auth/token",
+    PRODUCTS_FIRST: (category, size) => host+`/api/product?category=${category}&size=${size}`,
+    PRODUCTS: (category, sort, page, size) => host+`/api/product?category=${category}&sort=${sort}&page=${page}&size=${size}`
   };
   
