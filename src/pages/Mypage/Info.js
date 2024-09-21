@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import PhoneNumber from "./PhoneNumber";
 import { useNavigate } from "react-router-dom";
 import { queryMyInfo } from "../../services";
-import { PAGE_URL } from "../../constants/urls";
-import { axiosInstance } from "../../services/axiosInstance";
 
 const Info = () => {
     const [data,setData] = useState([]);
