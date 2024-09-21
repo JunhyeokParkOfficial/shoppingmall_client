@@ -1,6 +1,6 @@
 import {BrowserRouter as Router, Route,Routes} from 'react-router-dom';
 import Header from './pages/Header/Header';
-import Products from './pages/Shop/Products';
+import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Dashboard from './pages/admin/Dashboard';
 import HeaderAdmin from './pages/Header/HeaderAdmin';
@@ -12,7 +12,7 @@ import Info from './pages/Mypage/Info';
 import MypageMain from './pages/Mypage/MypageMain';
 import './styles/App.css';
 import { useSelector } from 'react-redux';
-import Detail from './pages/Shop/Detail';
+import Detail from './pages/ProductDetail/ProductDetail';
 import ProductEdit from './pages/admin/ProductEdit';
 import AdminManage from './pages/admin/AdminManage';
 import MyOrder from './pages/Mypage/MyOrder';
