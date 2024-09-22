@@ -1,5 +1,5 @@
 import { API_URL } from "../constants/urls";
-import { axiosInstance } from "./axiosInstance";
+import { axiosInstance } from "./axios/axiosInstance";
 
 export const requestCreateAccount = async (data) => {
     const response = await axiosInstance.post(API_URL.REGISTER, data);
