@@ -1,9 +1,15 @@
 import { API_URL } from "../constants/urls";
-import { axiosInstance } from "./axiosInstance";
+import { axiosInstance } from "./axios/axiosInstance";
 
 export const requestLogin = async (data) => {
     const response = await axiosInstance.post(API_URL.LOGIN, data);
-  
+
+    return response.data;
+};
+
+export const requestAdminLogin = async (data) => {
+    const response = await axiosInstance.post(API_URL.LOGIN_ADMIN, data);
+
     return response.data;
 };
 

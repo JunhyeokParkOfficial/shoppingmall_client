@@ -1,13 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initUser = {
-  userId: -1, 
-  role: "",
-};
-
 const initialState = {
   isLoggedIn: false,
-  info: initUser,
+  role: "",
 };
 
 const authReducer = createSlice({
@@ -16,17 +11,21 @@ const authReducer = createSlice({
   reducers: {
     login_success: (state, action) => {
       state.isLoggedIn = true;
-      //state.info.role = action.payload.authority[0].authorityStatus;
+      state.role = "MEMBER";
+    },
+    login_success_admin: (state, action) => {
+      state.isLoggedIn = true;
+      state.role = "ADMIN";
     },
     remove_userInfo: (state) => {
       state.isLoggedIn = false;
-      state.info = initUser;
+      state.role = "";
     },
   },
 });
 
 
-export const { login_success, remove_userInfo } = authReducer.actions;
+export const { login_success, login_success_admin, remove_userInfo } = authReducer.actions;
 export {authReducer};
 
 
