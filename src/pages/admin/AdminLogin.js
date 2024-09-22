@@ -1,15 +1,15 @@
 import { useState } from 'react';
-import { useLogin } from '../hook/api/useLogin';
+import { useAdminLogin } from '../../hook/api/useAdminLogin';
 import { useSelector } from 'react-redux';
-import { PAGE_URL } from '../constants/urls';
-const Login = () =>{
+import { PAGE_URL } from '../../constants/urls';
+const AdminLogin = () =>{
     const [ID,setID] = useState("");
     const [PW,setPW] = useState("");
 
-    const login = useLogin();
+    const login = useAdminLogin();
 
     const {isLoggedIn} = useSelector(state=>state.user);
-    if(isLoggedIn) window.location.href = PAGE_URL.HOME;
+    if(isLoggedIn) window.location.href = PAGE_URL.ADMIN;
     
     const loginBtnClick = () =>{
         if(!ID){
@@ -21,7 +21,7 @@ const Login = () =>{
             return;
         }
         
-        const req = {email:ID,password:PW};;        
+        const req = {email:ID,password:PW};        
         login(req);
     }
     
@@ -31,7 +31,7 @@ const Login = () =>{
                 <form>
                     <div className="login">
                         <div id='login'>
-                            <h3 id='login-title'>로그인</h3>
+                            <h3 id='login-title'>관리자 로그인</h3>
                             <fieldset>
                                 <ul className='form'>
                                     <li>
@@ -46,7 +46,6 @@ const Login = () =>{
                                         <div onClick={loginBtnClick}><a>로그인하기</a></div>
                                     </li>
                                 </ul>
-                                <div className='btn_register'><a href='/register'>회원가입</a></div>
                                 <div className='login_reset'>
                                     <div>비밀번호를 잊으셨나요?</div><a href='/reset'>비밀번호 재설정하기</a>
                                 </div>
@@ -59,4 +58,4 @@ const Login = () =>{
     )
 }
 
-export default Login;
+export default AdminLogin;

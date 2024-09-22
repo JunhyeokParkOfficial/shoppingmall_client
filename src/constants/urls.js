@@ -11,6 +11,7 @@ export const PAGE_URL = {
     PRODUCT:"/product",
     PRODUCT_PAGENATION: (category, sort, currentPage) => `/product?category=${category}&sort=${sort}&page=${currentPage}`,
     LOGIN:"/login",
+    LOGIN_ADMIN:"/admin/login",
     REGISTER:"/register",
     MYPAGE:"/mypage",
     INFO:"/mypage/information",
@@ -21,8 +22,9 @@ export const PAGE_URL = {
   };
   
   export const API_URL = {  
-    REGISTER: host+"/api/member",
+    REGISTER: host+"/api/auth",
     LOGIN: host+"/api/auth",
+    LOGIN_ADMIN: host+"/api/auth/admin",
     LOGOUT: host+"/api/auth",
     MY_INFO: host+"/api/member",
     REISSUE: host+"/api/auth/token",

@@ -1,5 +1,5 @@
-import { PAGE_URL } from "../constants/urls";
-import { reissueToken, requestLogout } from "./auth";
+import { PAGE_URL } from "../../constants/urls";
+import { reissueToken } from "../auth";
 import { axiosInstance } from "./axiosInstance";
 
 export const setToken = (config) => {
