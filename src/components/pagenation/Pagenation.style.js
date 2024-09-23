@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const PagenationBox = styled.div`
   justify-content: center;
   display: flex;
-  margin-bottom: 300px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   text-align: center;
 `
 export const PageButton = styled.button`

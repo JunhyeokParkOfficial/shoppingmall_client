@@ -1,9 +1,9 @@
 import { CurrentPageButton, PageButton, PagenationBox } from "./Pagenation.style";
 import pageLeft from "../../assets/pageLeft.png";
 import pageRight from "../../assets/pageRight.png";
-import { PAGE_URL } from "../../constants/urls";
 
-const Pagenation = ({currentPage, totalPage, category, sort, url}) => {
+const Pagenation = ({currentPage, totalPage, onPageChange}) => {
+
     let pagesLeft = [], pagesRight = [];
     const start = Math.floor((currentPage - 1) / 5) * 5 + 1;
     const end = start + 4 < totalPage ? start + 4 : totalPage;
@@ -16,15 +16,17 @@ const Pagenation = ({currentPage, totalPage, category, sort, url}) => {
     }
 
     const handlePreviousPage = () => {
-        if(currentPage > 1) window.location.href = url(category, sort, currentPage-1);
+        if(currentPage > 1) {
+            onPageChange(currentPage-1);
+        }
     } 
     
     const handleNextPage = () => {
-        if(currentPage < totalPage) window.location.href = url(category, sort, currentPage+1);
+        if(currentPage < totalPage) onPageChange(currentPage+1);//window.location.href = url(category, sort, currentPage+1);
     } 
 
     const handlePageClick = (page) => {
-        window.location.href = url(category, sort, page);
+        onPageChange(page);
     };
 
     return (
