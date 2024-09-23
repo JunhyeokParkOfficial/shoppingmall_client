@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom/dist";
 import { Axios } from "../../utils/CustomAxios";
 
-const AdminProduct = ({product,getProduct}) =>{
+const AdminProduct = ({product,fetchData}) =>{
     const uri = `/api/v1/admin/delete?id=${product.id}`
     const navigate = useNavigate();
 
     const deleteClick = async(event)=>{
       await Axios.delete(uri);
-      getProduct();
+      fetchData();
     }
     const editClick = () => {
         navigate(`/admin/product/edit/${product.id}`);
@@ -16,9 +16,9 @@ const AdminProduct = ({product,getProduct}) =>{
         <>
             <tr> 
                 <td><img style={{width:"100px",height:"100px"}} src={product.imageUrl}/></td>
-                <td className="">{product.itemName}</td>
+                <td className="">{product.name}</td>
                 <td className="">{product.price}</td>
-                <td className="">{product.itemStatus}</td>
+                <td className="">{product.status === 'FOR_SALE' ? '판매중' : '품절'}</td>
                 <td>
                     <input onClick={editClick}type="button" value="수정"/>
                     <input onClick={deleteClick} type="button" value="삭제"/>

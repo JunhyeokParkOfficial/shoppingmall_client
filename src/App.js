@@ -12,15 +12,15 @@ import MypageMain from './pages/Mypage/MypageMain';
 import './styles/App.css';
 import Detail from './pages/ProductDetail/ProductDetail';
 import ProductEdit from './pages/admin/ProductEdit';
-import AdminManage from './pages/admin/AdminManage';
 import MyOrder from './pages/Mypage/MyOrder';
-import OrderManage from './pages/admin/OrderManage';
+import OrderManage from './pages/admin/orderManage/OrderManage';
 import Reset from './pages/Reset';
 import { PAGE_URL } from './constants/urls';
 import UserRoutes from './routes/UserRoutes';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminRoutes from './routes/AdminRoutes';
 import AdminHeader from './pages/Header/AdminHeader';
+import ProductManage from './pages/admin/productManage/ProductManage';
 
 const Headers = () => {
   const location = useLocation();
@@ -39,7 +39,7 @@ function App() {
       <Routes>
         <Route element={<AdminRoutes/>}>
           <Route path={PAGE_URL.ADMIN} element={<Dashboard/>}></Route>
-          <Route path={PAGE_URL.ADMIN_MANAGE} element={<AdminManage/>}></Route>
+          <Route path={PAGE_URL.PRODUCT_MANAGE} element={<ProductManage/>}></Route>
           <Route path={PAGE_URL.PRODUCT_REG} element={<ProductReg/>}></Route>
           <Route path={PAGE_URL.ORDER_MANAGE} element={<OrderManage/>}></Route>
           <Route path={PAGE_URL.PRODUCT_EDIT} element={<ProductEdit/>}></Route>

@@ -1,24 +1,23 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { getProducts } from '../../services/product';
+import { getProductsByCategory } from '../../services/product';
 import Pagenation from '../../components/pagenation/Pagination';
-import { PAGE_URL } from '../../constants/urls';
 import { SortBox, SortOption, TitleAndSortContainer, TitleBox } from './Products.style';
 import { sortOptions } from '../../constants/sortOptions';
 import { categories } from '../../constants/categories';
 
 const Pruducts = () =>{
-    const [searchParams, setSearchParams] = useSearchParams();
     const [list,setList] = useState([]); 
     const [totalPage, setTotalPage] = useState();
 
-    const currentPage = searchParams.get("page") ? parseInt(searchParams.get("page")) : 1;
-    const category = searchParams.get('category');
-    const sort = searchParams.get('sort') ? searchParams.get('sort') : sortOptions.최신순;    
+    const params = new URLSearchParams(window.location.search);
+
+    const currentPage = params.get("page") ? parseInt(params.get("page")) : 1;
+    const category = params.get('category');
+    const sort = params.get('sort') ? params.get('sort') : sortOptions.최신순;    
 
     const fetchData = async () => {
         try {
-            const data = await getProducts(category, sort, currentPage);
+            const data = await getProductsByCategory(category, sort, currentPage);
             setList(data.list);
             setTotalPage(data.totalPage);
         } catch (error) {
@@ -30,14 +29,21 @@ const Pruducts = () =>{
         fetchData();
     },[])
 
+    const handlePageChange = (page) => {
+        params.set('page', page);
+        window.location.href = "?" + params;
+        
+    }
+
     const clickSortOption = (option) => {
-        window.location.href = `${PAGE_URL.PRODUCT}?category=${category}&sort=${sortOptions[option]}`;
+        params.set('sort', sortOptions[option]);
+        window.location.href = "?" + params;
     }
 
     return (
         <div className="product_container">
             <TitleAndSortContainer>
-                <TitleBox>{categories[searchParams.get('category')]}</TitleBox>
+                <TitleBox>{categories[params.get('category')]}</TitleBox>
                 <SortBox>
                     {
                         Object.keys(sortOptions).map((option)=>{
@@ -67,7 +73,7 @@ const Pruducts = () =>{
                     })}
                 </ul>
             </div>
-            <Pagenation currentPage={currentPage} totalPage={totalPage} category={category} sort={sort} url={PAGE_URL.PRODUCT_PAGENATION}/>
+            <Pagenation currentPage={currentPage} totalPage={totalPage} onPageChange={handlePageChange}/>
         </div>
     )
 }

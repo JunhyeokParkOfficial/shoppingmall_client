@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import { PAGE_URL } from "../../constants/urls";
 
 const AdminMenu = ({menu}) => {
     return (
@@ -6,14 +7,14 @@ const AdminMenu = ({menu}) => {
                     <h2 className='category_title'>관리자 메뉴</h2>
                     <ul>
                         <li >
-                            <Link to='/admin/'>대시보드</Link>
+                            <Link to={PAGE_URL.ADMIN}>대시보드</Link>
                         </li>
                         <li>
-                            <Link to='/admin/order/1'>주문관리</Link>
+                            <Link to={PAGE_URL.ORDER_MANAGE}>주문관리</Link>
                         </li>
                         <li>
                         <div className="product_manage">
-                            <Link to='/admin/product/1'>상품관리</Link>
+                            <Link to={PAGE_URL.PRODUCT_MANAGE}>상품관리</Link>
                         </div>
                         </li>
                     </ul>
