@@ -1,53 +1,29 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Axios, formDataAxios } from "../../utils/CustomAxios";
 import AdminMenu from "./AdminMenu";
+import { categories } from "../../constants/categories";
+import { requestRegisterProduct, requestUploadImage } from "../../services";
+import { PAGE_URL } from "../../constants/urls";
 
 const ProductReg = () =>{
-    const [name,setName] = useState("");
+    const [name,setName] = useState();
     const [price,setPrice] = useState();
-    const [detail,setDetail] = useState("");
+    const [detail,setDetail] = useState();
     const [stock, setStock] = useState();
     const [image,setImage] = useState();
-    const navigate = useNavigate();
+    const [category, setCategory] = useState();
 
-    const priceCheck = () => {
-        const check = /^[0-9]+$/;
-        if(check.test(price)) return true;
-        else return false;
+    const onImageHandler = async (event) => {
+        const image = event.target.files[0];   
+        const res = await requestUploadImage(image);
+        setImage(res);
     }
-    const stockCheck = () => {
-        const check = /^[0-9]+$/;
-        if(check.test(stock)) return true;
-        else return false;
-    }
-    const onImageHandler = (event) => {
-        setImage(event.target.files[0]);   
+
+    const handleCategory = (e) => {
+        setCategory(e.target.value);
     }
     const onRegClick = async () => {
-        if(!name||!detail||!price||!stock||!stockCheck()||!priceCheck()){
-            alert("상품 정보를 정확하게 입력하세요");
-            return;
-        }
-        
-        const uri = "/api/v1/admin/register";
-        const data = {
-            "itemName": name,
-            "itemDetail":detail,
-            "price": price,
-            "stockNumber": stock,
-        }
-        const formData = new FormData();
-        formData.append('dto',new Blob([JSON.stringify(data)], {
-            type: "application/json"
-        }));
-        formData.append('file',image);
-       
-        await formDataAxios.post(uri,formData)
-        .then(()=>
-            {navigate("/admin/product/1");}
-        )
-        .catch(); 
+        const isSuccess = await requestRegisterProduct(name, price, detail, category, stock, image);
+        if(isSuccess) window.location.href = PAGE_URL.PRODUCT_MANAGE; 
     }
     return (
         <>
@@ -67,6 +43,19 @@ const ProductReg = () =>{
                         <tr>
                             <td>세부사항</td>
                             <td><textarea style={{width:"500px",height:"350px"}} onChange={(e)=>setDetail(e.target.value)}></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>카테고리</td>
+                            <td>
+                                <select onChange={handleCategory}>
+                                    <option disabled selected>카테고리를 선택해주세요.</option>
+                                    {Object.keys(categories).map((key)=>{
+                                        return (
+                                            <option value={key}>{categories[key]}</option>
+                                        )
+                                    })}
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>수량</td>
