@@ -15,6 +15,8 @@ const Pruducts = () =>{
     const category = params.get('category');
     const sort = params.get('sort') ? params.get('sort') : sortOptions.최신순;    
 
+    const baseUrl = process.env.REACT_APP_S3_URL;
+
     const fetchData = async () => {
         try {
             const data = await getProductsByCategory(category, sort, currentPage);
@@ -61,7 +63,7 @@ const Pruducts = () =>{
                             <li>
                                 <a className="product_list_a" href={detailurl}>
                                     <div>
-                                        <img src={data.url}/>
+                                        <img src={baseUrl+data.imageUrl}/>
                                     </div>
                                     <div className='product-simple-info'>
                                         <div id='simple-info-name'>{data.name}</div>
