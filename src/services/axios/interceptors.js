@@ -13,10 +13,8 @@ export const handleTokenError = async (error) => {
     const { config, response } = error;
 
     if (response.data.code === "A003"){
-        await reissueToken()
-            .then((data)=>{
-                localStorage.setItem("access_token", data.accessToken);
-            })
+        const tokenResponse = await reissueToken();
+        localStorage.setItem("access_token", tokenResponse.accessToken);
 
         const accessToken = localStorage.getItem("access_token");
         config.headers.Authorization = `Bearer ${accessToken}`;
