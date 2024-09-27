@@ -26,6 +26,8 @@ export const PAGE_URL = {
     LOGOUT: host+"/api/auth",
     MY_INFO: host+"/api/member",
     REISSUE: host+"/api/auth/token",
-    PRODUCTS: host+"/api/product"
+    PRODUCTS: host+"/api/product",
+    IMAGE: host+"/api/image",
+    PRODUCT_REG: host+"/api/admin/product"
   };
   
