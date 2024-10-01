@@ -137,3 +137,51 @@ export const DetailBoxDiv = styled.div`
 export const DetailDiv = styled.div`
     margin-top: 30px;
 `
+export const PopupDiv = styled.div`
+    display: ${({ show }) => (show ? 'block' : 'none')};
+    width: 290px;
+    height: 150px;
+    border: solid black 1px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 10px 10px 10px;
+    min-width: 300px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 50%) 20px 20px 80px 0px;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+    transition: all 100ms ease-in 0s;
+`
+
+export const CloseButtonDiv = styled.div`
+display: flex;
+  justify-content: flex-end;
+    height: 40px;
+`
+
+export const PopupCloseButton = styled.button`
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    font-size: 20px;
+`
+
+export const NavigateCartA = styled.a`
+    text-decoration: none;
+    margin: 24px auto 0px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex: 1 1 0%;
+    max-width: 161px;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 2px;
+    font-size: 14px;
+    color: rgb(93, 93, 93);
+    background-color: rgb(255, 255, 255);
+    line-height: 40px;
+`
