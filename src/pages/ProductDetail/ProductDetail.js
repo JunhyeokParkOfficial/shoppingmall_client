@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
-import { Axios } from "../../utils/CustomAxios";
+import { useParams } from "react-router-dom";
 import { queryProductDetail } from "../../services/product";
-import { CartAndPurchaseDiv, CartButton, CountButtonDiv, CountDiv, CountTitleDiv, DetailBoxDiv, DetailContainer, DetailDiv, ImageDiv, InfoBox, InfoDiv, InfosDiv, InfoSpan, InfoTitleSpan, NameDiv, PriceDiv, PriceSpan, PriceTitleSpan, PurchaseButton, SimpleBox, TotalPriceDiv, TotalPriceSpan, TotalPriceTitleDiv } from "./ProductDetail.style";
+import { CartAndPurchaseDiv, CartButton, CloseButtonDiv, DetailBoxDiv, DetailContainer, DetailDiv, ImageDiv, InfoBox, InfoDiv, InfosDiv, InfoSpan, InfoTitleSpan, NameDiv, NavigateCartA, NavigateCartDiv, PopupCloseButton, PopupDiv, PriceDiv, PriceSpan, PriceTitleSpan, PurchaseButton, SimpleBox, TotalPriceDiv, TotalPriceSpan, TotalPriceTitleDiv } from "./ProductDetail.style";
 import { categories } from "../../constants/categories";
+import { PAGE_URL } from "../../constants/urls";
+import { requestAddToCart } from "../../services";
 
 const Detail = () => {
     const user = useSelector(state=>state.user);
-    const navigate = useNavigate();
     const {id} = useParams();
     const [data,setData] = useState({});
-    const [count,setCount] = useState(1);
+    const [showPopup, setShowPopup] = useState(false);
 
     const baseUrl = process.env.REACT_APP_S3_URL;
     
@@ -20,46 +20,24 @@ const Detail = () => {
         setData(res);
     },[]);
 
-    const onMinusClick = () => {
-        if(count!==1)setCount(count-1);
-    }
-    const onPlusClick = () => {
-        setCount(count+1);
-    }
-
-    const onCartClick = () => {
+    const onCartClick = async () => {
         if(!user.isLoggedIn){
-            navigate("/login");
-        }
-        else {
-            const postdata = {"itemId":id,"count":count};
-            const uri = "/api/v1/cart"
-            Axios.post(uri,postdata);
-            document.querySelector(".popup_container_hidden").classList.add("popup_container");
-            document.querySelector(".popup_container").classList.remove("popup_container_hidden");
+            window.location.href = PAGE_URL.LOGIN;
+        } else {
+            await requestAddToCart(id);
+            setShowPopup(true);
         }
     }
-    const onXbtnClick = () => {
-        document.querySelector(".popup_container").classList.add("popup_container_hidden");
-        document.querySelector(".popup_container_hidden").classList.remove("popup_container");
+    const handleClosePopup = () => {
+        setShowPopup(false);
     }
 
     const onOrderClick = () => {
         if(!user.isLoggedIn){
-            navigate("/login");
+            window.location.href = PAGE_URL.LOGIN;
         }
         else {
             let res = window.confirm("상품을 구매하시겠습니까?");
-            if(res){
-                const uri = "/api/v1/order/do";
-                let postdata = {itemId:data.id,count:count};
-                Axios.post(uri,postdata)
-                .then(navigate("/mypage/order/1"))
-                .catch((err)=>{
-                    alert("주문할 수 없습니다");
-                    console.log(err.response);
-                })
-            }
         }
     }
     return (
@@ -95,24 +73,19 @@ const Detail = () => {
                     <pre>{data.detail}</pre>
                 </DetailDiv>
             </DetailBoxDiv>
-            <div className="popup_container_hidden">
-                <div className="cart_popup">
-                    <div className="cart_popup_x">
-                    <button onClick={onXbtnClick}>
-                        Ⅹ
-                    </button>
-                    </div>
+            
+                <PopupDiv show={showPopup}>
+                    <CloseButtonDiv>
+                        <PopupCloseButton onClick={handleClosePopup}>
+                            Ⅹ
+                        </PopupCloseButton>
+                    </CloseButtonDiv>
                     장바구니에 상품을 담았습니다.
-                    <div className="gocart_link">
-                    <a href="/cart/1">
-                        <div>
-                            장바구니 바로가기
-                        </div>
-                    </a>
-                    </div>
+                    <NavigateCartA href={PAGE_URL.CART}>
+                        장바구니 바로가기
+                    </NavigateCartA>
                     
-                </div>
-            </div>
+                </PopupDiv>
         </DetailContainer>
     )
 }

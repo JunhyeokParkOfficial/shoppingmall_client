@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoggedIn: false,
-  role: "",
+  role: "GUEST",
 };
 
 const authReducer = createSlice({
@@ -19,7 +19,7 @@ const authReducer = createSlice({
     },
     remove_userInfo: (state) => {
       state.isLoggedIn = false;
-      state.role = "";
+      state.role = "GUEST";
     },
   },
 });
