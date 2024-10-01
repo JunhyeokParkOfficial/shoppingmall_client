@@ -20,3 +20,10 @@ export const getProducts = async (page) => {
     
     return response.data;
 }
+
+export const queryProductDetail = async (id) => {
+    const response = await axiosInstance.get(API_URL.PRODUCT_DETAIL(id));
+    console.log(response.data);
+
+    return response.data;
+}
