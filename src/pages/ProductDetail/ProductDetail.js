@@ -2,30 +2,29 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Axios } from "../../utils/CustomAxios";
+import { queryProductDetail } from "../../services/product";
+import { CartAndPurchaseDiv, CartButton, CountButtonDiv, CountDiv, CountTitleDiv, DetailBoxDiv, DetailContainer, DetailDiv, ImageDiv, InfoBox, InfoDiv, InfosDiv, InfoSpan, InfoTitleSpan, NameDiv, PriceDiv, PriceSpan, PriceTitleSpan, PurchaseButton, SimpleBox, TotalPriceDiv, TotalPriceSpan, TotalPriceTitleDiv } from "./ProductDetail.style";
+import { categories } from "../../constants/categories";
 
 const Detail = () => {
     const user = useSelector(state=>state.user);
     const navigate = useNavigate();
     const {id} = useParams();
-    const [data,setData] = useState([]);
+    const [data,setData] = useState({});
     const [count,setCount] = useState(1);
+
+    const baseUrl = process.env.REACT_APP_S3_URL;
     
-    const getProduct =() =>{
-        const uri = `/api/v1/item/detail?id=${id}`;
-        Axios.get(uri)
-        .then((res)=>{setData(res.data);});
-    }
-    useEffect(()=>{
-        getProduct();
+    useEffect(async () => {
+        const res = await queryProductDetail(id);
+        setData(res);
     },[]);
 
     const onMinusClick = () => {
         if(count!==1)setCount(count-1);
     }
     const onPlusClick = () => {
-        if(data.stockNumber>count){
-            setCount(count+1);
-        }
+        setCount(count+1);
     }
 
     const onCartClick = () => {
@@ -64,45 +63,38 @@ const Detail = () => {
         }
     }
     return (
-        <div className="detail_container">
-            <div className="detail_ImageTitle">
-            <div className="detail_image">
-                <img style={{width:"100%",height:"500px"}} src={data.imageUrl}/>
-            </div>
-            <div className="detail_title">
-                <div className="detail_title_name">
-                    {data.itemName}
-                </div>
-                <div className="detail_title_price">
-                    <span className="detail_title_saleprice">판매가</span>
-                    <span className="detail_title_pricedisplay">{data.price}원</span>
-                </div>
-                <div className="detail_title_countForm">
-                    <div className="detail_title_countForm_text">수량</div>
-                    <div>
-                        <div className="detail_title_count"onClick={onMinusClick}>-</div>
-                        <div className="detail_title_count">{count}</div>
-                        <div className="detail_title_count"onClick={onPlusClick}>+</div>
-                    </div>
-                </div>
-                <div className="detail_title_totalprice">
-                    <h3 className="detail_title_totalprice_text">총 주문금액</h3>
-                    <span className="detail_title_totalprice_price">{data.price*count}원</span>
-                </div>
-                <div className="detail_title_btns">
-                    <div className="detail_title_btn"  onClick={onCartClick}style={{float:"left", marginLeft:"70px"}}><a>장바구니</a></div>
-                    <div className="detail_title_btn" onClick={onOrderClick}style={{float:"right", backgroundColor:"black", color:"white"}}>바로 구매</div>
-                </div>
-            </div>
-           
-            </div>
-            <div style={{marginTop:"100px"}}>
+        <DetailContainer>
+            <SimpleBox>
+                <ImageDiv>
+                    <img style={{height:"500px"}} src={baseUrl + data.imageUrl}/>
+                </ImageDiv>
+                <InfosDiv>
+                    <NameDiv>{data.name}</NameDiv>
+                    <InfoDiv>
+                        <InfoTitleSpan>분류</InfoTitleSpan>
+                        <InfoSpan className="detail_title_pricedisplay">{categories[data.category]}</InfoSpan>
+                    </InfoDiv>
+                    <InfoDiv>
+                        <InfoTitleSpan>조회수</InfoTitleSpan>
+                        <InfoSpan className="detail_title_pricedisplay">{data.views}</InfoSpan>
+                    </InfoDiv>
+                    <TotalPriceDiv>
+                        <TotalPriceTitleDiv>판매가</TotalPriceTitleDiv>
+                        <TotalPriceSpan>{data.price?data.price.toLocaleString("ko-KR"):0}원</TotalPriceSpan>
+                    </TotalPriceDiv>
+                    <CartAndPurchaseDiv>
+                        <CartButton  onClick={onCartClick}><a>장바구니</a></CartButton>
+                        <PurchaseButton onClick={onOrderClick}>바로 구매</PurchaseButton>
+                    </CartAndPurchaseDiv>
+                </InfosDiv>
+            </SimpleBox>
+            <DetailBoxDiv>
                 <hr></hr>
                 <div>상세정보</div>
-                <div style={{marginTop:"30px"}}>
-                    <pre>{data.itemDetail}</pre>
-                </div>
-            </div>
+                <DetailDiv>
+                    <pre>{data.detail}</pre>
+                </DetailDiv>
+            </DetailBoxDiv>
             <div className="popup_container_hidden">
                 <div className="cart_popup">
                     <div className="cart_popup_x">
@@ -121,7 +113,7 @@ const Detail = () => {
                     
                 </div>
             </div>
-        </div>
+        </DetailContainer>
     )
 }
 

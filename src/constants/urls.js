@@ -28,6 +28,7 @@ export const PAGE_URL = {
     REISSUE: host+"/api/auth/token",
     PRODUCTS: host+"/api/product",
     IMAGE: host+"/api/image",
-    PRODUCT_REG: host+"/api/admin/product"
+    PRODUCT_REG: host+"/api/admin/product",
+    PRODUCT_DETAIL: (id) => host + `/api/product/${id}`
   };
   

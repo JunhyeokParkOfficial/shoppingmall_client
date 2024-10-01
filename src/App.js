@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Route,Routes, useLocation} from 'react-router-dom';
-import Header from './pages/Header/Header';
+import Header from './components/Header/Header';
 import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Dashboard from './pages/admin/Dashboard';
@@ -19,7 +19,7 @@ import { PAGE_URL } from './constants/urls';
 import UserRoutes from './routes/UserRoutes';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminRoutes from './routes/AdminRoutes';
-import AdminHeader from './pages/Header/AdminHeader';
+import AdminHeader from './components/Header/AdminHeader';
 import ProductManage from './pages/admin/productManage/ProductManage';
 
 const Headers = () => {
