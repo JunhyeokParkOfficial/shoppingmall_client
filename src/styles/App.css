@@ -56,6 +56,7 @@ input::placeholder {
     float: left;
     width: 136px;
     height: 50px;
+    padding-top: 9px;
     margin-right: 140px;
     margin-left: 10px;
 }
@@ -146,28 +147,12 @@ input::placeholder {
 .left_menu li div{
     padding-top:25px;
     padding-bottom: 25px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #b9b1b1;
 }
 .left_menu a{
     text-decoration: none;
     color: white;
 }
-
-
-/* -------------------------------- Home -----------------------------------*/
-
-
-#main-box {
-    width: 1024px;
-    margin: auto;
-}
-
-#main-box img{
-    width: 100%;
-    height: 100%;
-}
-
-
 
 /* -------------------------login--------------------------------------------- */
 #container{
@@ -387,14 +372,6 @@ ul{
 
 
 /* ------------------------------------------------info------------------------------------ */
-.mypage_content{
-    margin-top: 80px;
-    margin-right: 100px;
-    margin-bottom: 200px;
-    width: 70%;
-    float: right;
-}
-
 .mypage_content h3{
     margin: 6px 0 24px;
     font-size: 24px;
@@ -450,23 +427,6 @@ ul{
 }
 
 /* ------------------------------------MypageBar------------------------------- */
-.mypage_container{
-    float:left;
-    margin: 65px 60px 60px;
-}
-
-.mypage_list{
-    width: 210px;
-}
-
-.mypage_list h2{
-    font-size: 30px;
-    line-height: 1em;
-    padding-bottom: 25px;
-    border-bottom: 1px solid #0d0d0d;
-    font-weight: 700;
-}
-
 .mypage_menu{
     margin-bottom: 10px;
 }
@@ -531,215 +491,6 @@ ul{
     font-size: 23px;
     font-weight: 500;
 }
-
-
-/* ------------------------------------------ Cart ------------------------------------------ */
-.cart_container{
-    margin: 50px 0px auto;
-    padding: 0px 50px 200px;
-    min-width: 900px;
-    max-width: 1600px;
-}
-
-.cart_table{
-    border-bottom: solid 1px black;
-}
-
-.cart_table_top{
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    border-top: 4px solid rgb(0, 0, 0);
-}
-.cart_table_top_cell{
-    display: table-cell;
-    height: 74px;
-    line-height: 24px;
-    font-size: 18px;
-    font-weight: 700;   
-    text-align: center;
-    vertical-align: middle;
-}
-
-
-.cart_table_bottom{
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    text-align: center;
-}
-
-.cart_table_cell_check{
-    display: table-cell;
-    padding: 30px 0px;
-    border-top: 1px solid rgb(228, 228, 228);
-    font-size: 18px;
-    line-height: 24px;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    vertical-align: middle;
-    width: 4.3%;
-}
-
-
-.cart_checkbox, .cart_topcheckbox{
-    width: 20px; 
-    height: 20px; 
-}
-
-.cart_table_cell_info{
-    display: table-cell;
-    border-top: 1px solid rgb(228, 228, 228);
-    font-size: 18px;
-    line-height: 24px;
-    color: rgb(0, 0, 0);
-    vertical-align: middle;
-    position: relative;
-    padding: 27px 60px 30px 0px;
-    text-align: left;
-}
-
-
-.cart_table_cell_count{
-    display: table-cell;
-    padding: 30px 0px;
-    font-size: 18px;
-    line-height: 24px;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    vertical-align: middle;
-    width: 200px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-image: initial;
-    border-width: 1px 1px 0px;
-}
-.cart_table_cell_price{
-    display: table-cell;
-    padding: 30px 0px;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    vertical-align: middle;
-    width: 200px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-image: initial;
-    border-width: 1px 1px 0px;
-    font-size: 22px;
-    color: rgb(0, 0, 0);
-    word-break: break-all;
-    font-weight:600;
-    font-family: 'campton','Apple SD Gothic Neo',NanumBarunGothic,'나눔바른고딕',Malgun Gothic,'맑은 고딕',dotum,sans-serif;
-}
-
-.cart_table_cell_choice{
-    display: table-cell;
-    padding: 30px 0px;
-    border-top: 1px solid rgb(228, 228, 228);
-    font-size: 18px;
-    line-height: 24px;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    vertical-align: middle;
-    width: 15%;
-}
-
-.countbtn{
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    min-height: 25px;
-    width: 36px;
-    height: 36px;
-    min-width: initial;
-    border-width: 1px 1px 1px 1px;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-right-style: solid;
-    border-top-color: rgb(228, 228, 228);
-    border-bottom-color: rgb(228, 228, 228);
-    border-left-color: rgb(228, 228, 228);
-    border-right-color: rgb(228, 228, 228);
-    border-image: initial;
-    border-radius: 0px;
-    background: rgb(255, 255, 255);
-    font-size: 19px;
-    font-weight: 400;
-    color: rgb(160, 160, 160);
-}
-
-
-.cart_order{
-    margin-top: 35px;
-    text-align: center;
-}
-
-.cart_order_btn{
-    display: inline-block;
-    min-width: 290px;
-    height: 60px;
-    line-height: 54px;
-    padding-top: 4px;
-    font-size: 28px;
-    font-weight: 700;
-    background-color: black;
-    color: white;
-    text-align: center;
-    margin: 0 1px;
-    vertical-align: middle;
-}
-
-.cart_order:hover .cart_order_btn{
-    display: inline-block;
-    min-width: 290px;
-    height: 60px;
-    line-height: 54px;
-    padding-top: 4px;
-    font-size: 28px;
-    font-weight: 700;
-    background-color: black;
-    color: rgb(229, 99, 12);
-    text-align: center;
-    margin: 0 1px;
-    vertical-align: middle;
-}
-
-.cart_img{
-    margin: 3px 25px 0px 25px;
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
-}
-
-.cart_item_name{
-    margin-top: 5px;
-    display: block;
-    color: rgb(0, 0, 0);
-    font-size: 25px;
-    font-weight: 600;
-    line-height: 22px;
-    word-break: break-all;
-}
-
-.cart_item_price{
-    margin-top: 20px;
-    font-size: 18px;
-    line-height: 22px;
-    color: rgb(48, 48, 51);
-}
-
-.cart_delete_btn{
-    display: inline-block;
-    min-width: 90px;
-    height: 40px;
-    background-color: white;
-    border: solid 0.5px #474646;
-}
-
 
 /* --------------------------admin-------------------------------------*/
 /*---------------------------------------- AdminProducts------------------------------------ */
@@ -924,50 +675,11 @@ ul{
 
 }
 
-.cart_table{
-    border-bottom: solid 1px black;
-}
-
-.cart_table_top{
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    border-top: 4px solid rgb(0, 0, 0);
-}
-.cart_table_top_cell{
-    display: table-cell;
-    height: 74px;
-    line-height: 24px;
-    font-size: 18px;
-    font-weight: 700;   
-    text-align: center;
-    vertical-align: middle;
-}
-
-
 .order_table_bottom{
     display: table;
     width: 100%;
     table-layout: fixed;
     text-align: center;
-}
-
-.cart_table_cell_check{
-    display: table-cell;
-    padding: 15px 0px;
-    border-top: 1px solid rgb(228, 228, 228);
-    font-size: 18px;
-    line-height: 24px;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    vertical-align: middle;
-    width: 4.3%;
-}
-
-
-.cart_checkbox, .cart_topcheckbox{
-    width: 20px; 
-    height: 20px; 
 }
 
 .order_table_cell_info{
@@ -996,24 +708,6 @@ ul{
     border-color: rgb(228, 228, 228);
     border-image: initial;
     border-width: 1px 1px 0px;
-}
-.cart_table_cell_price{
-    display: table-cell;
-    padding: 30px 0px;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    vertical-align: middle;
-    width: 200px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-image: initial;
-    border-width: 1px 1px 0px;
-    font-size: 22px;
-    color: rgb(0, 0, 0);
-    word-break: break-all;
-    font-weight:600;
-    font-family: 'campton','Apple SD Gothic Neo',NanumBarunGothic,'나눔바른고딕',Malgun Gothic,'맑은 고딕',dotum,sans-serif;
 }
 
 .order_table_cell_status{
@@ -1044,10 +738,6 @@ ul{
     height: 40px;
 }
 
-.cart_order{
-    margin-top: 35px;
-}
-
 .order_cancel_btn{
     float: right;
     right: 50px;
@@ -1057,13 +747,6 @@ ul{
     height: 50px;
     font-size: 15px;
     color: rgb(70, 68, 68);
-}
-
-.cart_img{
-    margin: 3px 25px 0px 25px;
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
 }
 
 .order_item_name{
@@ -1082,14 +765,6 @@ ul{
     line-height: 22px;
     color: rgb(48, 48, 51);
 }
-
-.cart_delete_btn{
-    display: inline-block;
-    min-width: 90px;
-    height: 40px;
-    background-color: white;
-    border: solid 0.5px #474646;
-}
 .order_img{
     margin: 3px 15px 0px 25px;
     width: 110px;
@@ -1099,37 +774,11 @@ ul{
 
 
 /*-----------------------------------admin_order-----------------------------------*/
-
-.cart_table{
-    border-bottom: solid 1px black;
-}
-
-.cart_table_top{
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-    border-top: 4px solid rgb(0, 0, 0);
-}
-.cart_table_top_cell{
-    display: table-cell;
-    height: 74px;
-    line-height: 24px;
-    font-size: 18px;
-    font-weight: 700;   
-    text-align: center;
-    vertical-align: middle;
-}
-
 .order_table_bottom{
     display: table;
     width: 100%;
     table-layout: fixed;
     text-align: center;
-}
-
-.cart_checkbox, .cart_topcheckbox{
-    width: 20px; 
-    height: 20px; 
 }
 
 .order_table_cell_info{
@@ -1159,24 +808,6 @@ ul{
     border-color: rgb(228, 228, 228);
     border-image: initial;
     border-width: 1px 1px 0px;
-}
-.cart_table_cell_price{
-    display: table-cell;
-    padding: 10px 0px;
-    font-size: 18px;
-    line-height: 24px;
-    text-align: center;
-    vertical-align: middle;
-    width: 150px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-image: initial;
-    border-width: 1px 1px 0px;
-    font-size: 22px;
-    color: rgb(0, 0, 0);
-    word-break: break-all;
-    font-weight:600;
-    font-family: 'campton','Apple SD Gothic Neo',NanumBarunGothic,'나눔바른고딕',Malgun Gothic,'맑은 고딕',dotum,sans-serif;
 }
 
 .order_table_cell_status{
@@ -1208,10 +839,6 @@ ul{
     height: 30px;
 }
 
-.cart_order{
-    margin-top: 35px;
-}
-
 .order_cancel_btn{
     float: right;
     right: 50px;
@@ -1221,13 +848,6 @@ ul{
     height: 50px;
     font-size: 15px;
     color: rgb(70, 68, 68);
-}
-
-.cart_img{
-    margin: 3px 25px 0px 25px;
-    width: 110px;
-    height: 110px;
-    object-fit: cover;
 }
 
 .order_item_name{
@@ -1246,12 +866,3 @@ ul{
     line-height: 22px;
     color: rgb(48, 48, 51);
 }
-
-.cart_delete_btn{
-    display: inline-block;
-    min-width: 90px;
-    height: 40px;
-    background-color: white;
-    border: solid 0.5px #474646;
-}
-
