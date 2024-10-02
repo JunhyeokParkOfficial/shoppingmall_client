@@ -1,10 +1,10 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import Order from "./Order";
-import MypageBar from "./MypageBar";
+import Order from "../../components/Order";
+import MypageBar from "../../components/MyPageMenu/MypageMenu";
 import { useParams } from "react-router-dom";
 import { MyOrderPaging } from "../Paging";
 import { Axios } from "../../utils/CustomAxios";
+import { MyOrderContainer, MypageContainer } from "./MyOrder.style";
 
 const MyOrder = () =>{
     const {id} = useParams();
@@ -23,10 +23,10 @@ const MyOrder = () =>{
 
 
     return (
-        <div>
+        <MypageContainer>
             <MypageBar/>
-            <div className="myorder_container">
-            <div style={{fontSize:"30px",marginBottom:"20px"}}>주문/배송조회</div>
+            <MyOrderContainer>
+            <h1>주문/배송조회</h1>
             <div className="cart_table">
                 <div className="cart_table_top">
                     <div style={{width: "25%"}}className="cart_table_top_cell">주문일자</div>
@@ -43,8 +43,8 @@ const MyOrder = () =>{
                 })}
                 <MyOrderPaging page={id}/>
             </div>
-        </div>
-        </div>
+        </MyOrderContainer>
+        </MypageContainer>
     )
 }
 

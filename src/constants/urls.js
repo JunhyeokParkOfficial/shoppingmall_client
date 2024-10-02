@@ -17,6 +17,7 @@ export const PAGE_URL = {
     MY_ORDER:"/mypage/order/:id",
     CART:"/cart",
     PRODUCT_DETAIL:"/product/:id",
+    PRODUCT_DETAIL_ID: (id) => `/product/${id}`
   };
   
   export const API_URL = {  
@@ -30,6 +31,7 @@ export const PAGE_URL = {
     IMAGE: host+"/api/image",
     PRODUCT_REG: host+"/api/admin/product",
     PRODUCT_DETAIL: (id) => host + `/api/product/${id}`,
-    ADD_TO_CART: host+"/api/cart"
+    ADD_TO_CART: host+"/api/cart",
+    CART_ITEMS: host+"/api/cart"
   };
   

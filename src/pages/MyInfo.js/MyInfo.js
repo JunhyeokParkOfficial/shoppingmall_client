@@ -1,8 +1,9 @@
-import MypageBar from "./MypageBar";
+import MypageBar from "../../components/MyPageMenu/MypageMenu";
 import { useEffect, useState } from "react";
-import PhoneNumber from "./PhoneNumber";
+import PhoneNumber from "../../components/PhoneNumber";
 import { useNavigate } from "react-router-dom";
 import { queryMyInfo } from "../../services";
+import { MyInfoContainer, MypageContainer } from "./MyInfo.style";
 
 const Info = () => {
     const [data,setData] = useState([]);
@@ -50,10 +51,10 @@ const Info = () => {
         }
     }
     return (
-        <>
+        <MypageContainer>
             <MypageBar/>
-            <div className="mypage_content">
-                <h3>개인정보관리</h3>
+            <MyInfoContainer>
+                <h1>개인정보관리</h1>
                 <div className="info_form">
                     <table>
                         <tbody>
@@ -86,8 +87,8 @@ const Info = () => {
                         <div onClick={saveClick} style={{color:"white", backgroundColor:"black"}}>저장</div>
                     </div>
                 </div>
-            </div>
-        </>
+            </MyInfoContainer>
+        </MypageContainer>
     )
 }
 

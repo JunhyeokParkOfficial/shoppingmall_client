@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Axios } from "../../utils/CustomAxios";
+import { Axios } from "../utils/CustomAxios";
 
 const Order = ({data,getData}) => {
     const onStatusHandler = () => {
