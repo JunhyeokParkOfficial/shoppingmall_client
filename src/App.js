@@ -3,16 +3,16 @@ import Header from './components/Header/Header';
 import Products from './pages/Products/Products';
 import Cart from './pages/Cart/Cart';
 import Dashboard from './pages/admin/Dashboard';
-import Home from './pages/Home';
+import Home from './pages/Home/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ProductReg from './pages/admin/ProductReg';
-import Info from './pages/Mypage/Info';
-import MypageMain from './pages/Mypage/MypageMain';
+import Info from './pages/MyInfo.js/MyInfo';
+import MypageMain from './pages/Mypage/Mypage';
 import './styles/App.css';
 import Detail from './pages/ProductDetail/ProductDetail';
 import ProductEdit from './pages/admin/ProductEdit';
-import MyOrder from './pages/Mypage/MyOrder';
+import MyOrder from './pages/MyOrder/MyOrder';
 import OrderManage from './pages/admin/orderManage/OrderManage';
 import Reset from './pages/Reset';
 import { PAGE_URL } from './constants/urls';
@@ -21,6 +21,7 @@ import AdminLogin from './pages/admin/AdminLogin';
 import AdminRoutes from './routes/AdminRoutes';
 import AdminHeader from './components/Header/AdminHeader';
 import ProductManage from './pages/admin/productManage/ProductManage';
+import Footer from './components/Footer/Footer';
 
 const Headers = () => {
   const location = useLocation();
@@ -58,6 +59,7 @@ function App() {
           <Route path={PAGE_URL.CART} element={<Cart/>}></Route>
         </Route>
       </Routes>
+      <Footer/>
     </Router>
   )
 }

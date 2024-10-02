@@ -29,10 +29,12 @@ const Header = () => {
     }
 
     const clickCart = () => {
-        window.location.href = PAGE_URL.CART_PAGE(1);
+        if(!user.isLoggedIn) window.location.href = PAGE_URL.LOGIN;
+        window.location.href = PAGE_URL.CART;
     }
 
     const clickMyPage = () => {
+        if(!user.isLoggedIn) window.location.href = PAGE_URL.LOGIN;
         window.location.href = PAGE_URL.MYPAGE;
     }
 
@@ -57,7 +59,7 @@ const Header = () => {
                 <div id="header-mid">
                     <div id="logo-box">
                         <a href="/">
-                            <img src={logo} style={{height:'50px'}}/>
+                            <img src={logo} style={{width:'230px'}}/>
                         </a>
                     </div>
                     <div id='search-box'>

@@ -56,7 +56,7 @@ const AdminHeader = () => {
                 <div id="header-mid" style={{marginBottom:"30px"}}>
                     <div id="logo-box">
                         <a href="/">
-                            <img src={logo} style={{height:'50px'}}/>
+                            <img src={logo} style={{width:'230px'}}/>
                         </a>
                     </div>
                 </div>   

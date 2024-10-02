@@ -9,3 +9,9 @@ export const requestAddToCart = async (productId) => {
     
     return response.data;
 };
+
+export const queryCartItems = async () => {
+    const response = await axiosInstance.get(API_URL.CART_ITEMS);
+    console.log(response);
+    return response.data;
+};

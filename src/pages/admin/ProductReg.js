@@ -63,7 +63,7 @@ const ProductReg = () =>{
                         </tr>
                         <tr>
                             <td>상품 이미지</td>
-                            <td><input onChange={onImageHandler} type="file"/></td>
+                            <td><input ons={onImageHandler} type="file"/></td>
                         </tr>
                     </table>
                     <div className="product_register_btns">

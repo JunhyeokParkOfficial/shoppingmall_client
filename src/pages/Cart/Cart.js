@@ -1,33 +1,18 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Axios } from "../../utils/CustomAxios";
-import { CartPaging } from "../Paging";
-import CartItem from "./CartItem";
+import CartItem from "../../components/CartItem/CartItem";
+import { queryCartItems } from "../../services/cart";
+import { CartContainer, CartTableContainer, CartTd, CartTh, CartTH, CartTopTr, DeleteAllButton, EmptyCartDiv, TitleBox, TitleContainer } from "./Cart.style";
 
 const Cart = () =>{
-    const navigate = useNavigate();
-    const {id} = useParams();
     const [data,setData] = useState([]);
     const [list,setList] = useState(new Set());
-    const getData = () =>{
-        const uri = `/api/v1/cart?page=${id-1}`;
-        Axios.get(uri)
-        .then((res)=>{setData(res.data.content);});
-    }
-    useEffect(()=>{
-        getData();
+        
+    useEffect(async ()=>{
+        const items = await queryCartItems();
+        setData(items);
     },[])
-
-    const onOrderClick = () => {
-        const uri = "/api/v1/cartItem/orders";
-        let temp = [];
-        list.forEach((product)=>{temp=[...temp,{cartItemId:product}]});
-        Axios.post(uri,temp)
-        .then(()=>{
-            alert("주문이 완료되었습니다");
-            navigate("/mypage/order/1");
-        })
-    }
 
     const ontopCheck = (e) => {
             const checkboxes = document.querySelectorAll('.cart_checkbox');
@@ -63,30 +48,34 @@ const Cart = () =>{
       };
 
     return (
-        <div className="cart_container">
-            <div style={{fontSize:"30px",marginBottom:"20px"}}>장바구니</div>
-            <div className="cart_table">
-                <div className="cart_table_top">
-                    <div style={{width: "4.3%"}} className="cart_table_top_cell">
+        <CartContainer>
+            <TitleContainer>
+                <TitleBox>장바구니</TitleBox>
+            </TitleContainer>
+            <DeleteAllButton>선택 삭제</DeleteAllButton>
+            <CartTableContainer>
+                <CartTopTr>
+                    <CartTh style={{width: "45px"}}>
                         <span><input onChange={ontopCheck}className="cart_topcheckbox"type="checkbox"/></span>
-                    </div>
-                    <div className="cart_table_top_cell">상품 정보</div>
-                    <div style={{width: "200px"}}className="cart_table_top_cell">수량</div>
-                    <div style={{width: "200px"}}className="cart_table_top_cell">주문금액</div>
-                    <div style={{width: "15%"}}className="cart_table_top_cell">선택</div>
-                </div>
-                {!data?<></>:data.map((data)=>{
+                    </CartTh>
+                    <CartTh style={{width:"480px"}}>상품 정보</CartTh>
+                    <CartTh style={{width: "200px"}}className="cart_table_top_cell">가격</CartTh>
+                    <CartTh style={{width: "150px"}}className="cart_table_top_cell">판매 상태</CartTh>
+                    <CartTh style={{width: "15%"}}className="cart_table_top_cell"/>
+                </CartTopTr>
+                {data.length == 0?
+                <EmptyCartDiv>
+                    현재 장바구니에 상품이 없습니다.  
+                </EmptyCartDiv>  
+                :
+                data.map((data)=>{
                     return(
-                        <CartItem data={data} getData={getData} checkedItemHandler={checkedItemHandler}/>
+                        <CartItem data={data} checkedItemHandler={checkedItemHandler}/>
                     )
                     
                 })}
-                <CartPaging page={id}/>
-            </div>
-            <div className="cart_order">
-                <button onClick={onOrderClick}className="cart_order_btn">주문하기</button>
-            </div>
-        </div>
+            </CartTableContainer>
+        </CartContainer>
     )
 }
 
