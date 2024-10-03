@@ -1,5 +1,5 @@
 export * from "./member";
 export * from "./auth";
 export * from "./product";
-export * from "./admin";
 export * from "./cart";
+export * from "./image";

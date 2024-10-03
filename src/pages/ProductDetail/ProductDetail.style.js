@@ -143,7 +143,7 @@ export const PopupDiv = styled.div`
     height: 150px;
     border: solid black 1px;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     padding: 10px 10px 10px;
     min-width: 300px;

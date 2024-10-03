@@ -6,9 +6,9 @@ import Dashboard from './pages/admin/Dashboard';
 import Home from './pages/Home/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import ProductReg from './pages/admin/ProductReg';
+import ProductReg from './pages/ProductReg/ProductReg';
+import AdminProductManage from './pages/admin/AdminProductManage/AdminProductManage';
 import Info from './pages/MyInfo.js/MyInfo';
-import MypageMain from './pages/Mypage/Mypage';
 import './styles/App.css';
 import Detail from './pages/ProductDetail/ProductDetail';
 import ProductEdit from './pages/admin/ProductEdit';
@@ -20,7 +20,7 @@ import UserRoutes from './routes/UserRoutes';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminRoutes from './routes/AdminRoutes';
 import AdminHeader from './components/Header/AdminHeader';
-import ProductManage from './pages/admin/productManage/ProductManage';
+import ProductManage from './pages/ProductManage/ProductManage';
 import Footer from './components/Footer/Footer';
 
 const Headers = () => {
@@ -40,8 +40,7 @@ function App() {
       <Routes>
         <Route element={<AdminRoutes/>}>
           <Route path={PAGE_URL.ADMIN} element={<Dashboard/>}></Route>
-          <Route path={PAGE_URL.PRODUCT_MANAGE} element={<ProductManage/>}></Route>
-          <Route path={PAGE_URL.PRODUCT_REG} element={<ProductReg/>}></Route>
+          <Route path={PAGE_URL.ADMIN_PRODUCT_MANAGE} element={<AdminProductManage/>}></Route>
           <Route path={PAGE_URL.ORDER_MANAGE} element={<OrderManage/>}></Route>
           <Route path={PAGE_URL.PRODUCT_EDIT} element={<ProductEdit/>}></Route>
           </Route>
@@ -53,7 +52,8 @@ function App() {
         <Route path={PAGE_URL.PRODUCT_DETAIL} element={<Detail/>}></Route>
         <Route element={<UserRoutes/>}>
           <Route path={PAGE_URL.RESET} element={<Reset/>}></Route>
-          <Route path={PAGE_URL.MYPAGE} element={<MypageMain/>}></Route>
+          <Route path={PAGE_URL.PRODUCT_REG} element={<ProductReg/>}></Route>
+          <Route path={PAGE_URL.MYPAGE_PRODUCT} element={<ProductManage/>}></Route>
           <Route path={PAGE_URL.INFO} element={<Info />}></Route>
           <Route path={PAGE_URL.MY_ORDER} element={<MyOrder/>}></Route>
           <Route path={PAGE_URL.CART} element={<Cart/>}></Route>

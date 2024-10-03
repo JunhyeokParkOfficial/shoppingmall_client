@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom/dist";
 import { Axios } from "../../utils/CustomAxios";
 
-const AdminProduct = ({product,fetchData}) =>{
+const Product = ({product,fetchData}) =>{
     const uri = `/api/v1/admin/delete?id=${product.id}`
     const navigate = useNavigate();
     const baseUrl = process.env.REACT_APP_S3_URL;
@@ -30,4 +30,4 @@ const AdminProduct = ({product,fetchData}) =>{
     )
 }
 
-export default AdminProduct;
+export default Product;

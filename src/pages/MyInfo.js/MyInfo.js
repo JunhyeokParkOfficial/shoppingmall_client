@@ -1,4 +1,5 @@
 import MypageBar from "../../components/MyPageMenu/MypageMenu";
+import MypageLayout from "../../components/MypageLayout/MypageLayout";
 import { useEffect, useState } from "react";
 import PhoneNumber from "../../components/PhoneNumber";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +12,6 @@ const Info = () => {
     const [newPW1,setNewPW1] = useState("");
     const [newPW2,setNewPW2] = useState("");
     
-    const navigate = useNavigate();
-
     const getInfo = async() =>{
         queryMyInfo()
             .then((data)=>{
@@ -51,10 +50,7 @@ const Info = () => {
         }
     }
     return (
-        <MypageContainer>
-            <MypageBar/>
-            <MyInfoContainer>
-                <h1>개인정보관리</h1>
+        <MypageLayout title='개인정보관리'>
                 <div className="info_form">
                     <table>
                         <tbody>
@@ -87,8 +83,7 @@ const Info = () => {
                         <div onClick={saveClick} style={{color:"white", backgroundColor:"black"}}>저장</div>
                     </div>
                 </div>
-            </MyInfoContainer>
-        </MypageContainer>
+        </MypageLayout>    
     )
 }
 

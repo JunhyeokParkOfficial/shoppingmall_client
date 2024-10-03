@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom/dist";
 import AdminMenu from "../AdminMenu";
-import AdminProduct from "../AdminProduct";
-import { AdminContentContainer, AdminContentTitle } from "../orderManage/OrderManage.style";
 import { getProducts } from "../../../services";
-import { Container, Title } from "./ProductManage.style";
+import { Container, Title } from "./AdminProductManage.style";
 import Pagenation from "../../../components/pagenation/Pagination";
+import Product from "../../../components/Product/Product";
 
 const ProductManage = () => {
 
@@ -59,7 +57,7 @@ const ProductManage = () => {
                   <td></td>
                   </tr>
                     {list.map((product)=>
-                      <AdminProduct product={product} fetchData={fetchData}/>
+                      <Product product={product} fetchData={fetchData}/>
                     )}
                 </tbody>
               </table>

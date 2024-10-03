@@ -2,8 +2,8 @@ const host = process.env.REACT_APP_SERVER_HOST;
 
 export const PAGE_URL = {
     ADMIN:"/admin",
-    PRODUCT_MANAGE:"/admin/product",
-    PRODUCT_REG:"/admin/product/register",
+    ADMIN_PRODUCT_MANAGE:"/admin/product",
+    MYPAGE_PRODUCT:"/mypage/product",
     ORDER_MANAGE: "/admin/order",
     PRODUCT_EDIT:"/admin/product/edit/:id",
     HOME:"/",
@@ -16,6 +16,7 @@ export const PAGE_URL = {
     INFO:"/mypage/information",
     MY_ORDER:"/mypage/order/:id",
     CART:"/cart",
+    PRODUCT_REG: "/mypage/product/register",
     PRODUCT_DETAIL:"/product/:id",
     PRODUCT_DETAIL_ID: (id) => `/product/${id}`
   };
@@ -29,9 +30,10 @@ export const PAGE_URL = {
     REISSUE: host+"/api/auth/token",
     PRODUCTS: host+"/api/product",
     IMAGE: host+"/api/image",
-    PRODUCT_REG: host+"/api/admin/product",
+    PRODUCT_REG: host+"/api/product",
     PRODUCT_DETAIL: (id) => host + `/api/product/${id}`,
     ADD_TO_CART: host+"/api/cart",
-    CART_ITEMS: host+"/api/cart"
+    CART_ITEMS: host+"/api/cart",
+    MY_PRODUCTS: host+"/api/product/my"
   };
   
