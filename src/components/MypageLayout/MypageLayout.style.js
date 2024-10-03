@@ -6,7 +6,7 @@ export const MypageContainer = styled.div`
 
 export const MypageContentDiv = styled.div`
     margin-right: 100px;
-    margin-left: 40px;
+    margin-left: 20px;
     margin-top: 30px;
     margin-bottom: 60px;
     width: 1024px;
