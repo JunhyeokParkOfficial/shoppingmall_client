@@ -28,16 +28,6 @@ const Header = () => {
         window.location.href = PAGE_URL.LOGIN;
     }
 
-    const clickCart = () => {
-        if(!user.isLoggedIn) window.location.href = PAGE_URL.LOGIN;
-        window.location.href = PAGE_URL.CART;
-    }
-
-    const clickMyPage = () => {
-        if(!user.isLoggedIn) window.location.href = PAGE_URL.LOGIN;
-        window.location.href = PAGE_URL.MYPAGE;
-    }
-
     const handleMouseOver = () => {
         setIsHovering(true);
     };
@@ -66,10 +56,10 @@ const Header = () => {
                         <input id='search-input' placeholder='검색어를 입력해 주세요.'></input>
                     </div>
                     <div id='button-box'>
-                        <a onClick={clickCart}>
+                        <a href={PAGE_URL.CART} style={{textDecoration:"none", color:"black"}}>
                             <img src={cartIcon} style={{marginRight:'7px'}}/>장바구니
                         </a>
-                        <a onClick={clickMyPage} style={{marginRight:'5px'}}>
+                        <a href={PAGE_URL.MYPAGE_PRODUCT} style={{marginRight:'5px', textDecoration:"none", color:"black"}}>
                             <img src={userIcon} style={{marginRight:'3px'}}/>마이페이지
                         </a>
                     </div>
