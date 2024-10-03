@@ -23,7 +23,8 @@ export const getProducts = async (page) => {
 
 export const getMyProducts = async () => {
     const response = await axiosInstance.get(API_URL.MY_PRODUCTS);
-
+    console.log(response);
+    
     return response.data;
 }
 
