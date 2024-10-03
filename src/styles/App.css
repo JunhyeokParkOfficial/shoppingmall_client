@@ -378,11 +378,6 @@ ul{
     line-height: 1;
 }
 
-.info_form table{
-    border-top: 1px solid black;
-    width: 100%;
-}
-
 .info_form table th{
     width: 190px;
     padding-left: 40px;
@@ -527,18 +522,6 @@ ul{
     text-decoration: none;
     color: black;
 }
-.product_register_table{
-    margin-left: 100px;
-    margin-top: 30px;
-    width: 750px;
-}
-.product_register_table td{
-    border-bottom: 1px solid #e0e0e0;
-   padding: 20px;
-   font-weight: 500;
-   text-align: left;
-}
-
 
 .admin_category_list{
     padding: 20px;
@@ -569,20 +552,6 @@ ul{
     font-size: 18px;
     font-weight: 1000;
     color: #000;
-}
-
-.product_register_btns{
-    margin-top: 20px;
-    float: right;
-    position: relative;
-        right: 300px;   
-}
-
-
-.product_register_btn{
-    width: 150px;
-    height: 70px;
-    font-size: 17px;
 }
 
 .admin_selected_menu{
