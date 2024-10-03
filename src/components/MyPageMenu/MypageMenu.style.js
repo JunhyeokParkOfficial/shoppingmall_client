@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const MenuContainer = styled.div`
     margin-top: 50px;
-    margin-left: 20px;
+    margin-left: 50px;
     width: 160px;
 `
 

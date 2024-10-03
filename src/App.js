@@ -20,7 +20,7 @@ import UserRoutes from './routes/UserRoutes';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminRoutes from './routes/AdminRoutes';
 import AdminHeader from './components/Header/AdminHeader';
-import ProductManage from './pages/ProductManage/ProductManage';
+import MyProduct from './pages/MyProduct/MyProduct';
 import Footer from './components/Footer/Footer';
 
 const Headers = () => {
@@ -53,7 +53,7 @@ function App() {
         <Route element={<UserRoutes/>}>
           <Route path={PAGE_URL.RESET} element={<Reset/>}></Route>
           <Route path={PAGE_URL.PRODUCT_REG} element={<ProductReg/>}></Route>
-          <Route path={PAGE_URL.MYPAGE_PRODUCT} element={<ProductManage/>}></Route>
+          <Route path={PAGE_URL.MYPAGE_PRODUCT} element={<MyProduct/>}></Route>
           <Route path={PAGE_URL.INFO} element={<Info />}></Route>
           <Route path={PAGE_URL.MY_ORDER} element={<MyOrder/>}></Route>
           <Route path={PAGE_URL.CART} element={<Cart/>}></Route>
